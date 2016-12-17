@@ -7,3 +7,7 @@ Computer Vision (Shapiro, Stockman)
 - danielmaciagcu@gmail.com
 PyCharm
 Anaconda
+
+Git (to add):
+git commit -a -m "Added stuff"
+git push
