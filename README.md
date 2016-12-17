@@ -9,7 +9,7 @@ PyCharm
 Anaconda
 
 Git (to add):
-git commit -a -m "Added stuff"
+git commit -a -m "Added stuff"    
 git push
 
 Windows (curl):
