@@ -8,11 +8,11 @@ Computer Vision (Shapiro, Stockman)
 PyCharm
 Anaconda
 
-Git (to add):
+Git (to add):  
 git commit -a -m "Added stuff"    
 git push
 
-Windows (curl):
+Windows (curl):  
 curl https://ufile.io/685291 > backup.sql
 
 
