@@ -1,0 +1,290 @@
+\documentclass[a4paper]{article}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{verbatimbox}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[compact]{titlesec}
+\usepackage[bottom=1in]{geometry}
+
+
+\usepackage{booktabs}
+\usepackage{tabu}
+
+
+\usepackage{titling}
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\usepackage{ntheorem}
+\theorembodyfont{\normalfont}
+\newtheorem{mytheorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+\numberwithin{mytheorem}{section}
+\numberwithin{mydef}{section}
+\numberwithin{example}{section}
+
+\title{\textbf{Convex Optimization notes}}
+\author{Abiyaz Chowdhury \\ StonyBrook ID: 111580554}
+\date{\today}
+
+\parindent 0in
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\begin{mydef} A mathematical optimization problem has the form: \\ Minimize $f_{0}(x)$ subject to $f_{i}(x) \leq b_{i} \ \forall i \in \{1,2,...m\}$  where $x \in \mathbb{R}^{n}$ is the optimization variable and $f_{0} : \mathbb{R}^{n} \rightarrow \mathbb{R}$ is the objective function. The functions $f_{i}: \mathbb{R}^{n} \rightarrow \mathbb{R}$ are the constraint functions. A vector $x^{\star} \in \mathbb{R}^{n}$ is optimal (or a solution) if $f_{0}(x^{\star}) \leq f_{0}(x) \ \forall x \in \mathbb{R}^{n}$ and also $f_{i}(x^{\star}) \leq b_{i} \ \forall i \in \{1,2,...m\}$. 
+\end{mydef}
+
+\begin{mydef} An optimization problem in which the objective and the constraint functions $f_{0},...f_{m}$ are all linear (i.e. $f_{i}(\alpha x + \beta y) = \alpha f_{i}(x) + \beta f_{i}(y) \ \forall x,y \in \mathbb{R}^{n}, \ \forall \alpha,\beta \in \mathbb{R}$) is called a linear program.
+\end{mydef}
+
+\begin{mydef} A convex optimization problem is one in which the objective and constraint functions are convex, which means they satisfy the inequality $f_{i}(\alpha x + \beta y) \leq \alpha f_{i}(x) + \beta f_{i}(y) \ \forall x,y \in \mathbb{R}^{n}, \ \forall \alpha,\beta \in \mathbb{R}$ with $\alpha + \beta = 1, \alpha \geq 0, \beta \geq 0$.
+\end{mydef}
+
+\begin{mytheorem} Every linear program is also a convex optimization problem. \end{mytheorem}
+
+\begin{mydef} A least-squares problem is an optimization problem with no constraints and an objective function which is of the form: \\
+Minimize $f_{0}(x) = ||Ax - b|| ^{2}_{2}$ where $A \in \mathbb{R}^{k \times n}, k \geq n$ and $x \in \mathbb{R}^{n}$ is the optimization variable.
+\end{mydef}
+
+\begin{mytheorem} The solution of the least squares problem is $x = (A^{T}A)^{-1}A^{T}b$ \end{mytheorem}
+
+\begin{mytheorem} Every least squares problem is also a convex optimization problem. \end{mytheorem}
+
+\begin{mytheorem} Every linear program is of the form: \\
+Minimize $c^{T}x$ subject to $a^{T}_{i}(x) \leq b_{i}, \ \forall i \in \{1,...m\}$ where $c,a_{1}...a_{m} \in \mathbb{R}^{n}$ and $b_{1}...b_{m} \in \mathbb{R}$. 
+\end{mytheorem}
+
+\begin{mydef} The Chebyshev approximation problem is to: \\
+Minimize $\text{max}_{i=1,...,k} \lvert a^{T}_{i}x-b_{i}\rvert$ where $x \in \mathbb{R}^{n}$ is the optimization variable, and $a_{1},...,a_{k} \in \mathbb{R}^{n},b_{1}...b_{k} \in \mathbb{R}$.
+\end{mydef}
+
+\begin{mytheorem} The Chebyshev approximation problem can be transformed to an equivalent linear program of the form: \\
+Minimize $t$ subject to $a^{T}_{i}x - t \leq b_{i}, \ \forall i \in \{ 1,...,k\}$ and $-a^{T}_{i}x - t \leq -b_{i}, \ \forall i \in \{ 1,...,k\}$ for $x \in \mathbb{R}^{n}$ and $t \in \mathbb{R}$.
+\end{mytheorem}
+
+\section{Convex sets}
+
+\begin{mydef} A set $C \subseteq \mathbb{R}^{n}$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. $\forall x_{1},x_{2} \in C$ and $\theta \in \mathbb{R}$, we have $\theta x_{1} + (1-\theta)x_{2} \in C$.
+\end{mydef}
+
+\begin{mytheorem} A set $C$ is affine if and only if $C$ contains the linear combination of two of the points in $C$ whose coefficients sum to $1$. \end{mytheorem}
+
+\begin{mydef} An affine combination of a set of points $x_{1}...x_{k} \in \mathbb{R}^{n}$ is of the form $\theta_{1}x_{1} + ... + \theta_{k}x_{k}$ where $\theta_{1} + ... + \theta_{k} = 1$.
+\end{mydef}
+
+\begin{mytheorem} A set $C$ is affine if and only if $C$ contains all affine combinations of any set of its points in $C$. \end{mytheorem}
+
+\begin{mytheorem} If a set $C$ is affine, and $x_{0} \in C$, then the set $V = \{ x - x_{0} \mid x \in C \}$ is a subspace.  \end{mytheorem}
+
+\begin{mytheorem} If a set $C$ is affine, and $x_{0} \in C$, then the set $C = \{ v + x_{0} \mid v \in V \}$ for some subspace $V$.  \end{mytheorem}
+
+\begin{mytheorem} An affine set $C$ is also a vector space if and only if it contains the zero vector.  \end{mytheorem}
+
+\begin{mydef} The dimension of an affine set $C$ is the dimension of a subspace $V$ where $C = V + x_{0}$ where $x_{0} \in C$. \end{mydef}
+
+\begin{mytheorem} The dimension of an affine set $C$ is unique. \end{mytheorem}
+
+\begin{mytheorem} If $Ax = b$ is a system of linear equations where $A \in \mathbb{R}^{m \times n}, x \in \mathbb{R}^{n}, b \in \mathbb{R}^{m}$, then the solution set to this system is affine (provided a solution exists). \end{mytheorem}
+
+\begin{mydef} The affine hull of a set $C$ is the set of all affine combinations of points in $C$. \\
+$\textbf{aff} \ C = \{ \theta_{1}x_{1} + ... + \theta_{k}x_{k} \mid x_{1}...x_{k} \in C, \theta_{1} + ... + \theta_{k} = 1  \}$ \end{mydef}
+
+\begin{mytheorem} The intersection of two or more affine sets is affine. \end{mytheorem}
+
+\begin{mytheorem} Given a set $C$, the intersection of all affine sets containing $C$ is the affine hull of $C$. \end{mytheorem}
+
+\begin{mytheorem} (?) A set is affine if and only if it equals its affine hull. \end{mytheorem}
+
+\begin{mytheorem} The affine hull of any set is affine. \end{mytheorem}
+
+\begin{mytheorem} Let $x_{1},x_{2}...$ be a sequence in $C$ and let $\theta_{1},\theta_{2}...$ be a sequence where each $\theta_{i} \in \mathbb{R}$, and $\sum_{i = 1}^{\infty} \theta_{i} = 1 $. If $C$ is affine, then $\sum_{i = 1}^{\infty} \theta_{i}x_{i} \in C $ if the series converges. \end{mytheorem}
+
+\begin{mytheorem} Let $p : \mathbb{R}^{n} \rightarrow \mathbb{R} $ satisfy $\int_{C}p(x) \ dx = 1$, where $C \subseteq \mathbb{R}^{n}$ is affine. Then $\int_{C}p(x)x \ dx \in C $ if the integral exists. \end{mytheorem}
+
+\begin{mydef} The affine dimension of a set $C$ is the dimension of its affine hull. \end{mydef}
+
+\begin{example} The affine dimension of the unit circle in $\mathbb{R}^{2}$, i.e. $\{ (x_{1},x_{2}) \mid x^{2}_{1}+x^{2}_{2} = 1 \}$ is 2.  \end{example}
+
+\begin{mytheorem} The affine dimension of a set $C \subseteq \mathbb{R}^{n}$ is $n$ if and only if $\textbf{aff} \ C = \mathbb{R}^{n} $ \end{mytheorem}
+
+\begin{mydef} The relative interior of the set $C$, denoted $\textbf{relint} \ C$ is its interior relative to $\textbf{aff} \ C$: \\
+$\textbf{relint} \ C = \{ x \in C \mid B(x,r) \cap \textbf{aff} \ C \subseteq C \text{ for some } r > 0  \}$ where $B(x,r) = \{ y \mid ||y - x|| \leq r \}$ where $||\cdot||$ is any norm. 
+\end{mydef}
+
+\begin{mydef} The relative boundary of a set $C$ is $\textbf{cl} \ C \setminus \textbf{relint} \ C$ where $\textbf{cl} \ C $ is the closure of $C$.
+\end{mydef}
+
+\begin{example} Consider the unit square in the xy-plane in $\mathbb{R}^{3}$, i.e. $C = \{ (x_{1},x_{2},x_{3}) \in \mathbb{R}^{3} \mid x_{1} \in [-1,1],x_{2} \in [-1,1],x_{3} = 0 \}$. Its affine hull is the xy-plane. The interior of $C$ is empty, but its relative interior is $\textbf{relint } C = \{ (x_{1},x_{2},x_{3}) \in \mathbb{R}^{3} \mid x_{1} \in (-1,1),x_{2} \in (-1,1),x_{3} = 0 \}$. Its boundary is itself, and its relative boundary is $\{ (x_{1},x_{2},x_{3}) \in \mathbb{R}^{3} \mid \text{ max }\{|x_{1}|,|x_{2}| \} = 1, x_{3} = 0 \}$.
+\end{example}
+
+\begin{mydef} A set $C \subseteq \mathbb{R}^{n}$ is convex if the line segment through any two distinct points in $C$ lies in $C$, i.e. $\forall x_{1},x_{2} \in C$ and $\theta \in [0,1]$, we have $\theta x_{1} + (1-\theta)x_{2} \in C$.
+\end{mydef}
+
+\begin{mytheorem} Every affine set is also convex. \end{mytheorem}
+
+\begin{mytheorem} A set $C$ is convex if and only if $C$ contains the convex combination of any two points in $C$ whose coefficients sum to $1$. \end{mytheorem}
+
+\begin{mydef} A convex combination of a set of points $x_{1}...x_{k} \in \mathbb{R}^{n}$ is of the form $\theta_{1}x_{1} + ... + \theta_{k}x_{k}$ where $\theta_{1} + ... + \theta_{k} = 1$ and each of the $\theta_{1}...\theta_{k}$ are all in $[0,1]$.
+\end{mydef}
+
+\begin{mytheorem} A set $C$ is convex if and only if $C$ contains all convex combinations of any set of its points in $C$. \end{mytheorem}
+
+\begin{mydef} The affine hull of a set $C$ is the set of all affine combinations of points in $C$. \\
+$\textbf{aff} \ C = \{ \theta_{1}x_{1} + ... + \theta_{k}x_{k} \mid x_{1}...x_{k} \in C, \theta_{1} + ... + \theta_{k} = 1  \}$ \end{mydef}
+
+\begin{mytheorem} The intersection of two or more convex sets is convex. \end{mytheorem}
+
+\begin{mytheorem} Given a set $C$, the intersection of all convex sets containing $C$ is the convex hull of $C$. \end{mytheorem}
+
+\begin{mytheorem} (?) A set is convex if and only if it equals its convex hull. \end{mytheorem}
+
+\begin{mytheorem} The convex hull of any set is convex. \end{mytheorem}
+
+\begin{mytheorem} Let $x_{1},x_{2}...$ be a sequence in $C$ and let $\theta_{1},\theta_{2}...$ be a sequence where each $\theta_{i} \in [0,1]$, and $\sum_{i = 1}^{\infty} \theta_{i} = 1 $. If $C$ is convex, then $\sum_{i = 1}^{\infty} \theta_{i}x_{i} \in C $ if the series converges. \end{mytheorem}
+
+\begin{mytheorem} Let $p : \mathbb{R}^{n} \rightarrow \mathbb{R} $ satisfy $p(x) \geq 0$ for all $x \in C$ and $\int_{C}p(x) \ dx = 1$, where $C \subseteq \mathbb{R}^{n}$ is convex. Then $\int_{C}p(x)x \ dx \in C $ if the integral exists. \end{mytheorem}
+
+\begin{mytheorem} If $C \subseteq \mathbb{R}^{n}$ is convex and $x$ is a random vector with $p(x) = 1$, then $\textbf{E}[x] \in C$.  \end{mytheorem}
+
+\begin{mydef} A set $C$ is a cone, or nonnegative homogenous, if for all $x \in C$ and $\theta \geq 0$ we have $\theta x \in C$. $C$ is a convex cone, if it is convex and a cone. \end{mydef}
+
+\begin{mytheorem} $C$ is a convex cone if and only if for all $x_{1},x_{2} \in C$, and $\theta_{1},\theta_{2} \geq 0$, we have $\theta_{1}x_{1} + \theta_{2}x_{2} \in C$.   \end{mytheorem}
+
+\begin{mydef} A conic combination of a set of points $x_{1},...,x_{k} \in \mathbb{R}^{n}$ is of the form $\theta_{1}x_{1} + ... + \theta_{k}x_{k}$ where each of the $\theta_{i} \geq 0$.
+\end{mydef}
+
+\begin{mytheorem} A set $C$ is a convex cone if and only if $C$ contains all conic combinations of its elements. \end{mytheorem}
+
+\begin{mytheorem} Let $x_{1},x_{2}...$ be a sequence in $C$ and let $\theta_{1},\theta_{2}...$ be a sequence where each $\theta_{i} \geq 0$. If $C$ is a convex cone, then $\sum_{i = 1}^{\infty} \theta_{i}x_{i} \in C $ if the series converges. \end{mytheorem}
+
+\begin{mytheorem} Let $p : \mathbb{R}^{n} \rightarrow \mathbb{R} $ satisfy $p(x) \geq 0$, where $C \subseteq \mathbb{R}^{n}$ is a convex cone. Then $\int_{C}p(x)x \ dx \in C $ if the integral exists. \end{mytheorem}
+
+\begin{mydef} The conic hull of a set $C$ is the set of all conic combinations of points in $C$. \\
+$\{ \theta_{1}x_{1} + ... + \theta_{k}x_{k} \mid x_{1}...x_{k} \in C, \theta_{i} \geq 0  \}$ \end{mydef}
+
+\begin{mytheorem} (?) The intersection of two or more convex cones is a convex cone. \end{mytheorem}
+
+\begin{mytheorem} Given a set $C$, the intersection of all conic cones containing $C$ is the conic hull of $C$. \end{mytheorem}
+
+\begin{mytheorem} (?) A set is a conic cone if and only if it equals its conic hull. \end{mytheorem}
+
+\begin{mytheorem} The conic hull of any set is a convex set. \end{mytheorem}
+
+\begin{example} The empty set $\varnothing$, any singleton in $\mathbb{R}^{n}$, and $\mathbb{R}^{n}$ itself are all affine (hence, convex) subsets of $\mathbb{R}^{n}$.
+\end{example}
+
+\begin{example} Any line is affine. If it passes through zero, it is a subspace, and hence also a convex cone.
+\end{example}
+
+\begin{example} The line segment connecting two distinct points is convex, but not affine.
+\end{example}
+
+\begin{example} The ray $\{ (x_{0} + \theta v \mid \theta \geq 0\}$ where $v \neq 0$ is convex, but not affine. It is a convex cone if its base $x_{0} = 0$. 
+\end{example}
+
+\begin{example} Any subspace is affine, and also a convex cone.
+\end{example}
+
+\begin{mydef} A hyperplane is a set of the form $\{ x \mid a^{T}x = b \}$ where $a \in \mathbb{R}^{n}, a \neq 0, b \in \mathbb{R}$. \end{mydef}
+
+\begin{mytheorem} The above hyperplane definition can be equivalently stated as $\{ x \mid a^{T}(x-x_{0}) = 0 \} = x_{0} + a^{\bot}$ where $a^{\bot}$ is the orthogonal complement of $a$. \end{mytheorem}
+
+\begin{mydef} A halfspace of $\mathbb{R}^{n}$ is of the form $\{ x \mid a^{T}x \leq b \}$ where $a \neq $. \end{mydef}
+
+\begin{mytheorem} The above halfspace definition can be equivalently stated as $\{ x \mid a^{T}(x-x_{0}) leq 0 \}$ where $x_{0}$ is a point on the hyperplane $a^{T}x = b$. \end{mytheorem}
+
+\begin{mytheorem} Halfspaces are convex, but not affine. \end{mytheorem}
+
+\begin{mytheorem} A hyperplane divides $\mathbb{R}^{n}$ into two disjoint halfspaces. Vectors fall into one or the other of the two halfspaces depending on whether the angle they make with a normal vector to the halfspace is acute or obtuse. Vectors normal to a normal lie in the hyperplane. \end{mytheorem}
+
+\begin{mytheorem} The boundary of a halfspace is the associated hyperplane. \end{mytheorem}
+
+\begin{mydef} A Euclidean ball in $\mathbb{R}^{n}$ has the form $B(x_{c},r) = \{ x \mid ||x-x_{c}||_{2} \leq r \}$ where $r > 0$ and $||\cdot ||$ denotes the Euclidean norm.\end{mydef}
+
+\begin{mytheorem} An equivalent definition of a Euclidean ball is $ B(x_{c},r) = \{ x_{c} + ru \mid ||u||_{2} \leq 1 \} $.\end{mytheorem}
+
+\begin{mytheorem} Euclidean balls are convex. In fact, balls are convex with respect to any norm. \end{mytheorem}
+
+\begin{mydef} An ellipsoid is a set of the form $\mathcal{E} = \{ x \mid (x-x_{c})^{T}P^{-1}(x-x_{c}) \leq 1 \}$ where $P = P^{T} \succ 0 $ is symmetric and positive definite and $x_{c}$ is the center of the ellipse. \end{mydef}
+
+\begin{mytheorem} The lengths of the semi-axes of $\mathcal{E}$ are given by $\sqrt{\lambda_{i}}$ where $\lambda_{i}$ are the eigenvalues of $P$.  \end{mytheorem}
+
+\begin{mytheorem} A ball is an ellipsoid with $P = r^{2}I$.  \end{mytheorem}
+
+\begin{mytheorem} An equivalent definition of an ellipsoid is $\mathcal{E} = \{ x_{c} + Au \mid ||u||_{2} \leq 1 \} $ where $A$ is square and nonsingular. (By taking $A = P^{1/2}$, we get the ellipsoid defined earlier. \end{mytheorem}
+
+\begin{mytheorem} When the matrix in the above definition is symmetric positive definite but singular, the set in the definition above is called a degenerate ellipsoid and its affine dimension is equal to the rank of $A$.  \end{mytheorem}
+
+\begin{mytheorem} Ellipsoids (including degenerate ones) are convex.  \end{mytheorem}
+
+\begin{mydef} The norm cone associated with the norm $||\cdot||$ is the set $C = \{ (x,t) \mid ||x|| \leq t \} \subseteq \mathbb{R}^{n+1}$.  \end{mydef}
+
+\begin{mytheorem} Norm cones are convex cones.  \end{mytheorem}
+
+\begin{example} The second-order cone, defined by $C = \{ (x,t) \in \mathbb{R}^{n+1} \mid ||x||_{2} \leq t \}$ is the norm cone for the Euclidean norm. It is also known as the quadratic cone, the Lorentz cone, or the ice-cream cone.
+\end{example}
+
+\begin{mydef} A polyhedron is the solution set of a finite number of linear equalities and inequalities. $\mathcal{P} = \{ x \mid a^{T}_{j}x \leq b_{j}, j = 1,...,m, c^{T}_{j}x = d_{j}, j = 1,...,p \} $. Another notation is $\mathcal{P} = \{ x \mid Ax \succ b, Cx \preceq d\}$. where $\preceq$ denotes componentwise vector inequality.  \end{mydef}
+
+\begin{mytheorem} A polyhedron is the intersection of a finite number of halfspaces and hyperplanes.  \end{mytheorem}
+
+\begin{mytheorem} Affine sets (subspaces, hyperplanes, lines), rays, line segments, and halfspaces are all polyhedra. \end{mytheorem}
+
+\begin{mytheorem} Polyhedra are convex sets. \end{mytheorem}
+
+\begin{example} The nonnegative orthant is the set of points with nonnegative components, $\mathbb{R}^{n}_{+} = \{ x \in \mathbb{R}^{n} \mid x_{i} \geq 0, i = 1,...,n \}$. The nonnegative orthant is both a polyhedron and a cone. 
+\end{example}
+
+\begin{mydef} Suppose the $k+1$ points $v_{0},...,v_{k} \in \mathbb{R}^{n}$ are affinely independent, which means $v_{1}-v_{0},...,v_{k}-v_{0}$ are linearly independent. The simplex determined by them is $C = \textbf{conv}\{ v_{0},...,v_{k}\} = \{ \theta_{0}v_{0} + ... + \theta_{k}v_{k} \mid \theta \succeq 0, \textbf{1}^{T} = 1 \} $ \end{mydef}
+
+\begin{mytheorem} Simplices are also polyhedra and a simplex from $k+1$ points has affine dimension $k$. \end{mytheorem}
+
+\begin{example} A 1D simplex is a line segment, a 2D simplex is a triangle, and a 3D simplex is a tetrahedron. 
+\end{example}
+
+\begin{mytheorem} The convex hull of a finite set is a polyhedron, and bounded, but not necessarily represented easily as polyhedra. Likewise, polyhedra are not necessarily easily represented as convex hulls of a set of points. \end{mytheorem}
+
+\begin{example} The unit ball in the $\ell_{\infty}$-norm in $\mathbb{R}^{n}$ is $C = \{ x \mid |x_{i}| \leq 1, i = 1,...,n \} $. This set can be described in polyhedron form with $2n$ inequalities, or in convex hull form with $2^{n}$ points.\end{example}
+
+\begin{mytheorem} The set of symmetric $n \times n$ matrices, $S^{n} = \{ X \in \mathbb{R}^{n \times n} \mid X = X^{T} \} $ is a subspace with dimension $n(n+1)/2$.  \end{mytheorem}
+
+\begin{mydef} $S^{n}_{+} = \{ X \in S^{n} \mid X \succeq 0 \}$ denotes the set of symmetric positive semidefinite matrices. $S^{n}_{++} = \{ X \in S^{n} \mid X \succ 0 \}$ denotes the set of symmetric positive definite matrices.  \end{mydef}
+
+\begin{mytheorem} The set $S^{n}_{+}$ is a convex cone.  \end{mytheorem}
+
+\begin{mytheorem} Affine transformations preserve convexity. \end{mytheorem}
+
+\begin{mytheorem} Inverse images of affine transformations preserve convexity. \end{mytheorem}
+
+\begin{mytheorem} Projections preserve convexity. \end{mytheorem}
+
+\begin{mytheorem} The sum of two convex sets is convex (the sum is denoted by $ S_{1} + S_{2} = \{ x_{1} + x_{2} \mid x_{1} \in S_{1}, x_{2} \in S_{2} \} $).  \end{mytheorem}
+
+\begin{mytheorem} The partial sum of two convex sets is convex (with respect to one of the sets) is convex (the partial sum of two vectors adds only some of the components.)  \end{mytheorem}
+
+\begin{example} The polyhedron $ \{ x \mid Ax \preceq b, Cx = d \}$ can be expressed as the inverse image of the Cartesian product of the nonnegative orthant and the origin under the affine function $f(x) = (b- Ax, d - Cx)$: 
+$\{ x \mid f(x) \in \mathbb{R}^{m}_{+} \times \{ 0 \} \}.$ \end{example}
+
+\section{Convex functions}
+
+\begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R} $ is convex if $\textbf{dom}(f)$ is a convex set and if for all $x,y \in \textbf{dom}(f)$ with $\theta \in [0,1]$, we have $f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta)f(y)$.  \end{mydef}
+
+\begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R} $ is strictly convex if $\textbf{dom}(f)$ is a convex set and if for all $x,y \in \textbf{dom}(f)$ with $x \neq y$ and $\theta \in (0,1)$, we have $f(\theta x + (1-\theta)y) < \theta f(x) + (1-\theta)f(y)$.  \end{mydef}
+
+\begin{mydef} $f$ is concave if $-f$ is convex and $f$ is strictly concave if $-f$ is strictly convex.  \end{mydef}
+
+\begin{mytheorem} No function can be both strictly concave strictly convex, but both convexity and concavity is possible. In fact, any function is affine if and only if it is both convex and concave. \end{mytheorem}
+
+\begin{mytheorem} A function is convex if and only if it is convex when restricted to any line that intersects its domain. \end{mytheorem}
+
+\end{document}
+              
