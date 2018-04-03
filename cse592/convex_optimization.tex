@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{verbatimbox}
+\usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage[compact]{titlesec}
@@ -35,6 +36,8 @@
 \parindent 0in
 \setlength{\parskip}{0.5em}
 
+\newcommand{\done}{$\blacksquare$ }
+
 \begin{document}
 \maketitle
 
@@ -49,7 +52,7 @@
 \begin{mydef} A convex optimization problem is one in which the objective and constraint functions are convex, which means they satisfy the inequality $f_{i}(\alpha x + \beta y) \leq \alpha f_{i}(x) + \beta f_{i}(y) \ \forall x,y \in \mathbb{R}^{n}, \ \forall \alpha,\beta \in \mathbb{R}$ with $\alpha + \beta = 1, \alpha \geq 0, \beta \geq 0$.
 \end{mydef}
 
-\begin{mytheorem} Every linear program is also a convex optimization problem. \end{mytheorem}
+\begin{mytheorem} \done Every linear program is also a convex optimization problem. \end{mytheorem}
 
 \begin{mydef} A least-squares problem is an optimization problem with no constraints and an objective function which is of the form: \\
 Minimize $f_{0}(x) = ||Ax - b|| ^{2}_{2}$ where $A \in \mathbb{R}^{k \times n}, k \geq n$ and $x \in \mathbb{R}^{n}$ is the optimization variable.
@@ -71,17 +74,19 @@ Minimize $\text{max}_{i=1,...,k} \lvert a^{T}_{i}x-b_{i}\rvert$ where $x \in \ma
 Minimize $t$ subject to $a^{T}_{i}x - t \leq b_{i}, \ \forall i \in \{ 1,...,k\}$ and $-a^{T}_{i}x - t \leq -b_{i}, \ \forall i \in \{ 1,...,k\}$ for $x \in \mathbb{R}^{n}$ and $t \in \mathbb{R}$.
 \end{mytheorem}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Convex sets}
 
 \begin{mydef} A set $C \subseteq \mathbb{R}^{n}$ is affine if the line through any two distinct points in $C$ lies in $C$, i.e. $\forall x_{1},x_{2} \in C$ and $\theta \in \mathbb{R}$, we have $\theta x_{1} + (1-\theta)x_{2} \in C$.
 \end{mydef}
 
-\begin{mytheorem} A set $C$ is affine if and only if $C$ contains the linear combination of two of the points in $C$ whose coefficients sum to $1$. \end{mytheorem}
+\begin{mytheorem} \done A set $C$ is affine if and only if $C$ contains all linear combinations of any two points in $C$ whose coefficients sum to $1$. \end{mytheorem}
 
 \begin{mydef} An affine combination of a set of points $x_{1}...x_{k} \in \mathbb{R}^{n}$ is of the form $\theta_{1}x_{1} + ... + \theta_{k}x_{k}$ where $\theta_{1} + ... + \theta_{k} = 1$.
 \end{mydef}
 
-\begin{mytheorem} A set $C$ is affine if and only if $C$ contains all affine combinations of any set of its points in $C$. \end{mytheorem}
+\begin{mytheorem} \done A set $C$ is affine if and only if $C$ contains all affine combinations of any set of its points. \end{mytheorem}
 
 \begin{mytheorem} If a set $C$ is affine, and $x_{0} \in C$, then the set $V = \{ x - x_{0} \mid x \in C \}$ is a subspace.  \end{mytheorem}
 
@@ -274,6 +279,218 @@ $\{ \theta_{1}x_{1} + ... + \theta_{k}x_{k} \mid x_{1}...x_{k} \in C, \theta_{i}
 \begin{example} The polyhedron $ \{ x \mid Ax \preceq b, Cx = d \}$ can be expressed as the inverse image of the Cartesian product of the nonnegative orthant and the origin under the affine function $f(x) = (b- Ax, d - Cx)$: 
 $\{ x \mid f(x) \in \mathbb{R}^{m}_{+} \times \{ 0 \} \}.$ \end{example}
 
+\begin{example} The condition $A(x) = x_{1}A_{1} + ... + x_{n}A_{n} \preceq B$, where $B,A_{i} \in S^{m}$ is called a linear matrix inequality in $x$. The solution set of such an inequality is convex, and it is indeed the inverse image of the positive semidefinite cone under the affine map $f: \mathbb{R}^{n} \rightarrow S^{m}$ given by $f(x) = B - A(x)$. \end{example}
+
+\begin{example} The hyperbolic cone is the set $\{ x \mid x^{T}Px \leq (c^{T}x)^{2}, c^{T}x \geq 0 \}$. where $P \in S^{n}_{+}$ and $c \in \mathbb{R}^{n}$. It is convex, since it is the inverse image of the second-order cone, $\{ (z,t) \mid z^{T}z \leq t^{2}, t \geq 0\}$ under the affine function $f(x) = (P^{1/2}x, c^{T}x)$. \end{example}
+
+\begin{example} The ellipsoid $\mathcal{E} = \{ x \mid (x - x_{c})^{T}P^{-1}(x-x_{c}) \leq 1\}$, where $P \in S^{n}_{++}$, is the image of the unit Euclidean ball $\{ u \mid ||u||_{2} \leq 1 \} $ under the affine mapping $f(u) = P^{1/2}u + x_{c}$. It is also the inverse image of the unit ball under the affine mapping $g(x) = P^{-1/2}(x-x_{c})$.) \end{example}
+
+\begin{mydef} The perspective function $P: \mathbb{R}^{n+1} \rightarrow \mathbb{R}^{n}$ with $\textbf{dom } P = \mathbb{R}^{n} \times \mathbb{R}_{++}$  is $P(z,t) = z/t$ where $\mathbb{R}_{++}$ is the set of positive reals. \end{mydef}
+
+\begin{mytheorem} A perspective function is equivalent to the action of a pin-hole camera. \end{mytheorem}
+
+\begin{mytheorem} If $C \subseteq \textbf{dom } P$ is convex, then its image $P(C) = \{ P(x) \mid x \in C \}$ is convex. \end{mytheorem}
+
+\begin{mytheorem} A line-segment, viewed through a pin-hole camera, yields a line-segment. \end{mytheorem}
+
+\begin{mytheorem} If $C \subseteq \mathbb{R}^{n}$ is convex, then its inverse image under the perspective function is also convex, i.e. $P^{-1}(C) = \{ (x,t) \in \mathbb{R}^{n+1} \mid x/t \in C, t > 0 \}$ is convex. \end{mytheorem}
+
+\begin{mydef} A linear-fractional function is formed by composing the perspective function with an affine function. Let $g: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m+1}$ be affine, i.e.  
+\[ g(x) = \begin{bmatrix}
+A\\
+c^{T}
+\end{bmatrix} x + \begin{bmatrix}
+c\\
+d
+\end{bmatrix}, \]
+where $A \in \mathbb{R}^{m \times n}, b \in \mathbb{R}^{m}, c \in \mathbb{R}^{n}, d \in \mathbb{R}$. The function $f: \mathbb{R}^{n} \rightarrow \mathbb{R}^{m}$ given by $f = P \circ g$ is called a linear-fractional function. If $c = 0$ and $d > 0$, the domain of $f$ is $\mathbb{R}^{n}$, and $f$ is affine. 
+
+\end{mydef}
+
+\begin{mytheorem} A equivalent representation of linear-fractional functions to the above is $f(x) = (Ax + b)/(c^{T}x + d), \textbf{dom } f = \{ x \mid c^{T}x + d > 0 \}$.
+\end{mytheorem}
+
+\begin{mytheorem} Affine and linear functions are special cases of linear-fractional functions.
+\end{mytheorem}
+
+\begin{example} A linear-fractional function can be represented as a matrix \[ Q = \begin{bmatrix}
+A & b\\
+c^{T} & d
+\end{bmatrix} \in  \mathbb{R}^{(m+1) \times (n+1)} \] that acts on points of the form $(x,1)$ to yield $(Ax + b, c^{T}x + d)$ which is then normalized to $(f(x),1)$. The projective correspondence $\mathcal{P}(z) = \{ t(z,1) \mid t > 0 \}$ in $\mathbb{R}^{n+1}$ between $\mathbb{R}^{n}$ and the halfspace of rays with positive last component is one-to-one and onto. The linear fractional function can be expressed as $f(x) = \mathcal{P}^{-1}(Q\mathcal{P}(x))$. Thus, start with $x \in \textbf{ dom } f$, i.e. $c^{T}x + d > 0$, then the form the ray $\mathcal{P}(x)$ in $\mathbb{R}^{n+1}$. The linear transformation $Q$ acts on this ray to produce another ray, whose last component assumes positive values. The inverse projective transformation then recovers $f(x)$. 
+\end{example}
+
+\begin{mytheorem} Linear-fractional functions preserve convexity. If $C$ is convex and lies in the domain of $f$, i.e. $c^{T}x + d > 0 \forall x \in C$ then its image $f(C)$ is convex. 
+\end{mytheorem}
+
+\begin{mytheorem} If $C \subseteq \mathbb{R}^{m}$ is convex, then the inverse image $f^{-1}(C)$ is convex.
+\end{mytheorem}
+
+\begin{example} if $u$ and $v$ are random variables that take on values in $\{1,...,n \}$ and $\{1,...,m \}$ respectively, let $p_{ij}$ denote the probability that $u = i, v = j$. Then the conditional probability $f_{ij} = \textbf{prob}(u = i \mid v = j)$ is $ f_{ij} = \frac{p_{ij}}{\sum^{n}_{k = 1} p_{kj}}$ which is a linear-fractional mapping from $p$. If $C$ is a convex set of joint probabilities for $(u,v)$, then the associated set of conditional probabilities of $u$ given $v$ is also convex.
+\end{example}
+
+\begin{mydef} A cone $K \subseteq \mathbb{R}^{n}$ is called a proper cone if it satisfies the following:
+\begin{enumerate}
+\item $K$ is convex
+\item $K$ is closed
+\item $K$ is solid, which means it has nonempty interior.
+\item $K$ is pointed, which means that it contains no line (or, $x \in K$ and $-x \in K$ imply $x = 0$). 
+\end{enumerate}
+\end{mydef}
+
+\begin{mydef} Define the relation $x \preceq_{K} y \iff y - x \in K$ and the relation $x \prec_{K} y \iff y - x \in \textbf{ K}$. These relations are called generalized inequalities.\end{mydef}
+
+\begin{mytheorem} $x \preceq_{K} y$ is a partial order.
+\end{mytheorem}
+
+\begin{mytheorem} $x \prec_{K} y$ is a strict partial order.
+\end{mytheorem}
+
+\begin{mytheorem} When $K = \mathbb{R}_{+}$, the $x \preceq_{K} y$ reduces to $x \leq y$ and $x \prec_{K} y$ reduces to $x < y$.
+\end{mytheorem}
+
+\begin{example} The nonnegative orthant is a proper cone. The associated inequalities $x \preceq_{K} y$ and $x \prec_{K} y$ reduce to the component-wise inequalities $x \preceq y$ and $x \prec y$ respectively.  
+\end{example}
+
+\begin{example} The positive semidefinite cone $S^{n}_{+}$ is a proper cone in $S^{n}$. $\preceq_{K}$ and $\prec_{K}$ reduce to the usual matrix inequalities. $X \preceq Y$ means $Y - X$ is positive semidefinite and $X \prec Y$ means $Y - X$ is positive definite. The interior of $S^{n}_{+}$ consists of the positive definite matrices. 
+\end{example}
+
+\begin{example} Let $K = \{ c \in \mathbb{R}^{n} \mid c_{1} + c_{2}t + ... + c_{n}t^{n-1} \geq 0 \forall t \in [0,1] \}$. Then $K$ is a proper cone, and its interior is set of coefficients of polynomials that are positive on [0,1]. $c,d \in \mathbb{R}^{n}$ satisfy $c \preceq_{K} d$ if and only if $c_{1} + c_{2}t +...+ c_{n}t^{n-1} \leq d_{1} + d_{2}t +...+ d_{n}t^{n-1}$ for all $t \in [0,1]$.
+\end{example}
+
+\begin{mytheorem} Properties of generalized inequalities ($\preceq_{K})$:
+\begin{enumerate}
+\item Preserved under addition: If $x \preceq_{K} y$ and $u \preceq_{K} v$, then $x + u \preceq_{K}  y + v$.
+\item Transitive: If $x \preceq_{K} y$ and $y \preceq_{K} z$, then $x \preceq_{K} z$.
+\item Nonnegative homogeneity: If $x \preceq_{K} y$ and $\alpha \geq 0$, thn $\alpha x \preceq_{K} \alpha y$.
+\item Reflexive: $x \preceq_{K} x$.
+\item Antisymmetric: If $x \preceq_{K} y$ and $y \preceq_{K} x$, then $x = y$.
+\item Preserved under limits: If $x_{i} \preceq_{K} y_{i}$ for $i = 1,2...$, and $x_{i} \rightarrow x$ and $y_{i} \rightarrow y$ as $i \rightarrow \infty$,  then $x \preceq_{K} y$. 
+\end{enumerate}
+\end{mytheorem}
+
+\begin{mytheorem} Properties of strict generalized inequalities ($\prec_{K})$:
+\begin{enumerate}
+\item If $x \prec_{K} y$ then $x \prec_{K} y$.
+\item Preserved under addition: If $x \prec_{K} y$ and $u \prec_{K} v$, then $x + u \prec_{K}  y + v$.
+\item Positive homogeneity: If $x \prec_{K} y$ and $\alpha > 0$, thn $\alpha x \prec_{K} \alpha y$.
+\item Non-reflexive: $x \nprec_{K} x$.
+\item If $x \prec_{K} y$ then $x + y \prec_{K} y + v$ for $u,v$ small enough.
+\end{enumerate}
+\end{mytheorem}
+
+\begin{example} $x \prec y$ is not preserved under limits, nor is it antisymmetric.
+\end{example}
+
+\begin{example} (?) Generalized inequalities need not be total orders.
+\end{example}
+
+\begin{mydef} $x \in S$ is the minimum element of $S$ if for all $y \in S$ we have $x \preceq_{K} y$. $x \in S$ is the maximum element of $S$ if for all $y \in S$ we have $x \succeq_{K} y$.\end{mydef}
+
+\begin{mytheorem} Minimum and maximum elements of a set are unique, if they exist. \end{mytheorem}
+
+\begin{mydef} $x \in S$ is a minimal element of $S$ if $y \in S, y \preceq_{K} x$ implies $y = x$. $x \in S$ is a maximal element of $S$ if $y \in S, y \succeq_{K} x$ implies $y = x$.\end{mydef}
+
+\begin{mytheorem} Minimal and maximal elements of a set need not be unique. \end{mytheorem}
+
+\begin{mytheorem} (?) In general, minimal or maximal or minimum or maximum elements need not exist. \end{mytheorem}
+
+\begin{mytheorem} A minimum must also be minimal and a maximum must also be maximal. \end{mytheorem}
+
+\begin{mytheorem} $x \in S$ is the minimum element of $S$ if and only if $S \subseteq \{ y \mid y \succeq x \}$.  \end{mytheorem}
+
+\begin{mytheorem} $x \in S$ is the maximum element of $S$ if and only if $S \subseteq \{ y \mid y \preceq x \}$.  \end{mytheorem}
+
+\begin{mytheorem} $x \in S$ is a minimal element of $S$ if and only if $\{ y \mid y \preceq x \} \cap S = \{ x \} $.  \end{mytheorem}
+
+\begin{mytheorem} $x \in S$ is a maximal element of $S$ if and only if $\{ y \mid y \succeq x \} \cap S = \{ x \} $.  \end{mytheorem}
+
+\begin{example} For $K = \mathbb{R}_{+}$, the concepts of minimal and minimum are the same, and agree with the usual definition of the minimum element of a set (and likewise for maximum/maximal).
+\end{example}
+
+\begin{example} For each $A \in S^{n}_{++}$, define the ellipsoid $\mathcal{E}_{A} = \{ x \mid x^{T}A^{-1}x \leq 1 \}$. Then $A \preceq B$ if and only if $\mathcal{E}_{A} \subseteq \mathcal{E}_{B}$. Let $v_{1}...v_{k} \in \mathbb{R}^{n}$ be given and define $S = \{ P \in S^{n}_{++} \mid v^{T}_{i}P^{-1}v_{i} \leq 1, i = 1,...,k\}$. Then $S$ has no minimum element.
+\end{example}
+
+\begin{mytheorem} Let $C$ and $D$ be two disjoint convex sets. Then there exists $a \neq 0$ and $b$ such that $a^{T}x \leq b$ for all $x \in C$ an $a^{T}x \geq b$ for all $x in D$. The hyperplane $\{ x \mid a^{T}x = b \}$is called a separating hyperplane for the sets $C$ and $D$. \end{mytheorem}
+
+\begin{example} Suppose $C$ is convex and $D$ is affine, i.e. $D = \{ Fu + g \mid u \in \mathbb{R}^{m}\}$, where $F \in \mathbb{R}^{n \times m}$. If $C$ and $D$ are disjoint, then by the separating hyperplane there are $a \neq 0$ and $b$ such that $a^{T}x \leq b$ for all $x \in C$ and $a^{T}x \geq b$ for all $x in D$. But $a^{T}x \geq b$ for all $x \in D$ means $a^{T}Fu \geq b - a^{T}g$ for all $u \in \mathbb{R}^{m}$. But a linear function is bounded below on $\mathbb{R}^{m}$ only when it is zero, so $a^{T}F = 0$ and hence $b \leq a^{T}g$. So there is $a \neq 0$ such that $F^{T}a = 0$ and $a^{T}x \leq a^{T}g$ for all $x \in C$.
+\end{example}
+
+\begin{mydef} Let $C$ and $D$ be two disjoint convex sets. If there exists $a \neq 0$ and $b$ such that $a^{T}x < b$ for all $x \in C$ an $a^{T}x > b$ for all $x in D$, the hyperplane $\{ x \mid a^{T}x = b \}$ is called a strict separating hyperplane for the sets $C$ and $D$. \end{mydef}
+
+\begin{mytheorem} Separating hyperplanes need not be strict. \end{mytheorem}
+
+\begin{example} Let $C$ be a closed convex set and $x_{0} \notin C$. Then there exists a hyperplane that strictly separates $x_{0}$ from $C$. A closed convex set is the intersection of all halfspaces containing it.
+\end{example}
+
+\begin{mytheorem} Any two convex sets $C$ and $D$, at least one of which is open, are disjoint if and only if there exists a separating hyperplane.\end{mytheorem}
+
+\begin{example} The system of linear inequalities $Ax \prec b$ are infeasible if and only if the convex sets $C = \{ b - Ax \mid x \in \mathbb{R}^{m}\}, D = \mathbb{R}^{n}_{++} = \{ y \in \mathbb{R}^{m} \mid y \succ 0 \}$ are disjoint. $D$ is open and $C$ is affine. Hence $C$ and $D$ are disjoint if and only if there exists a separating hyperplane. Hence, the system of inequalities is infeasible if and only if there is $\lambda \in \mathbb{R}^{m}$ such that $\lambda \neq 0, \lambda \succeq 0, A^{T} \lambda = 0, \lambda^{T}b \leq 0$.  
+\end{example}
+
+\begin{mydef} Let $C \subseteq \mathbb{R}^{n}$ and $x_{0} \in \textbf{ bd } C = \textbf{ cl } C \backslash \textbf{ int } C$. If $a \neq 0$ satisfies $a^{T}x \leq a^{T}x_{0}$ for all $x \in C$, then the hyperplane $\{ x \mid a^{T}x = a^{T}x_{0} \}$ is called a supporting hyperplane to $C$ at the point $x_{0}$. \end{mydef}
+
+\begin{mytheorem} An equivalent characterization to the above of a supporting hyperplane is that $x_{0}$ and $C$ are separated by the hyperplane $\{ x \mid a^{T}x = a^{T}x_{0}\}$. Such a hyperplane is tangent to $C$ at $x_{0}$ and the halfspace $\{ x \mid a^{T}x \leq a^{T}x_{0} \}$ contains $C$. \end{mytheorem}
+
+\begin{mytheorem} For a nonempty convex set $C$ and a point $x_{0} \in \textbf{ bd } C$, there is a supporting hyperplane to $C$ at $x_{0}$. \end{mytheorem}
+
+\begin{mytheorem} If a set is closed, has nonempty interior, and has a supporting hyperplane at every point in its boundary, it is convex. \end{mytheorem}
+
+\begin{mydef} If $K$ is a cone, the set $K^{*} = \{ y \mid x^{T}y \geq 0 \ \forall x \in K \}$ is called the dual cone of $K$. \end{mydef}
+
+\begin{mytheorem} The dual cone of a cone $K$ is a cone, and always convex, even when $K$ is not. \end{mytheorem}
+
+\begin{mytheorem} $y \in K^{*}$ if and only if $-y$ is the normal of a hyperplane that supports $K$ at the origin. \end{mytheorem}
+
+\begin{example} The dual cone of a subspace $V \subseteq \mathbb{R}^{n}$ (which is a cone) is its orthogonal complement $V^{\bot} = \{ y \mid y^{T}v = 0 \ \forall v \ in V \}$.  
+\end{example}
+
+\begin{example} The cone $\mathbb{R}^{n}_{+}$ is its own dual. Such a cone is called self-dual.
+\end{example}
+
+\begin{example} Define the inner product $tr(XY) = \sum^{n}_{i,j = 1}X_{ij}Y_{ij}$ on the set of symmetric $n \times n$ matrices. The positive semidefinite cone $S^{n}_{+}$ is self-dual, i.e. for all $X,Y \in S^{n}$, $tr(XY) \geq 0 \ \forall X \succeq 0 \iff Y \succeq 0$.  
+\end{example}
+
+\begin{example} Let $||\dot||$ be a norm on $\mathbb{R}^{n}$. The dual of the cone $K = \{ (x,y) \in \mathbb{R}^{n+1} \mid ||x|| \leq t \}$ is the cone defined by the dual norm, i.e. $K* = \{ (u,v) \in \mathbb{R}^{n+1} \mid ||u||_{*} \leq v \}$, where the dual norm is given by $||u||_{*} = \text{sup}\{ u^{T}x \mid ||x|| \leq 1 \}$. 
+\end{example}
+
+\begin{mytheorem} Properties of dual cones:
+\begin{enumerate}
+\item If $K^{*}$ is closed and convex.
+\item $K_{1} \subseteq K_{2}$ implies $K^{*}_{1} \subseteq K^{*}_{2}$. 
+\item If $K$ has nonempty interior, $K^{*}$ is pointed.
+\item If the closure of $K$ is pointed, then $K^{*}$ has nonempty interior.
+\item $K^{**}$ is the closure of the convex hull of $K$. Hence if $K$ is convex and closed, $K^{**} = K$.
+\end{enumerate}
+\end{mytheorem}
+
+\begin{mytheorem} If $K$ is a proper cone, so is $K^{*}$, and therefore a generalized inequality $\preceq_{K*}$ is induced. \end{mytheorem}
+
+\begin{mytheorem} Properties relating a generalized inequality and its dual:
+\begin{enumerate}
+\item If $x \preceq_{K} y \iff \lambda^{T}x \leq \lambda^{T}y \ \forall \lambda \succeq_{K*} 0$.
+\item If $x \prec_{K} y \iff \lambda^{T}x < \lambda^{T}y \ \forall \lambda \succeq_{K*} 0, \lambda \neq 0$.
+\end{enumerate}
+\end{mytheorem}
+
+\begin{example} $\lambda \preceq_{K*} \mu$ if and only if $\lambda^{T}x \leq \mu^{T}x$ for all $x \succeq_{K} 0$.
+\end{example}
+
+\begin{mytheorem} Consider the system of strict inequalities $Ax \prec_{K} b$ where $x \in \mathbb{R}^{n}$. The system is infeasible if and only if there exists $\lambda \neq 0$ such that $\lambda \succeq_{K*} 0, A^{T}\lambda = 0, \lambda^{T}b \leq 0$. 
+\end{mytheorem}
+
+\begin{mytheorem} $x$ is the minimum element of $S$ if and only if for all $\lambda \succ_{K*} 0$, $x$ is the unique minimizer of $\lambda^{T}z$ over $z \in S$. Geometrically, this means that for all $\lambda \succ_{K*} 0$, the hyperplane $\{ z \mid \lambda^{T}(z-x) = 0 \}$ is a strict supporting hyperplane to $S$ at $x$. 
+\end{mytheorem}
+
+\begin{mytheorem} If $\lambda \succ_{K*} 0$ and $x$ minimizes $\lambda^{T}z$ over $z \in S$, then $x$ is minimal. The converse is not true in general. 
+\end{mytheorem}
+
+\begin{mytheorem} If $S$ is convex, for any minimal element $x$ there is a nonzero $\lambda \succeq_{K*} 0$ such that $x$ minimizes $\lambda^{T}z$ over $z \in S$. Note that this converse theorem cannot be strengthened to $\lambda \succ_{K*} 0$. Nor is it true that any minimizer of $\lambda^{T}z$ over $z \in S$ with $\lambda \succeq_{K*} 0$ is minimal.
+\end{mytheorem}
+
+\begin{mytheorem} Chapter 2 exercises.
+\end{mytheorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Convex functions}
 
 \begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R} $ is convex if $\textbf{dom}(f)$ is a convex set and if for all $x,y \in \textbf{dom}(f)$ with $\theta \in [0,1]$, we have $f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta)f(y)$.  \end{mydef}
@@ -285,6 +502,10 @@ $\{ x \mid f(x) \in \mathbb{R}^{m}_{+} \times \{ 0 \} \}.$ \end{example}
 \begin{mytheorem} No function can be both strictly concave strictly convex, but both convexity and concavity is possible. In fact, any function is affine if and only if it is both convex and concave. \end{mytheorem}
 
 \begin{mytheorem} A function is convex if and only if it is convex when restricted to any line that intersects its domain. \end{mytheorem}
+
+\begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R}$ can be extended as $\widetilde{f} : \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{ \infty \}$ by 
+\end{mydef}
+
 
 \end{document}
               
