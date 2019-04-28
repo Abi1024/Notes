@@ -1,0 +1,133 @@
+\documentclass[a4paper]{article}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{verbatimbox}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[compact]{titlesec}
+\usepackage[bottom=1in]{geometry}
+
+
+\usepackage{booktabs}
+\usepackage{tabu}
+
+
+\usepackage{titling}
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\usepackage{ntheorem}
+\theorembodyfont{\normalfont}
+\newtheorem{mytheorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+\numberwithin{mytheorem}{section}
+\numberwithin{mydef}{section}
+\numberwithin{example}{section}
+
+\title{\textbf{Graph Theory notes}}
+\author{Abiyaz Chowdhury}
+\date{\today}
+
+\parindent 0in
+\setlength{\parskip}{0.5em}
+
+\newcommand{\done}{$\blacksquare$ }
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\begin{mydef} A graph, is a pair $(V,E)$ where $E \subseteq V \times V$. The set $V$ is called the vertex set (or node set) of the graph, and the set $E$ is called the edge set. The elements of $V$ are the vertices (or nodes) of the graph, and elements of $E$ are the edges. An edge $(u,v) \in E$ is incident on the vertices $u$ and $v$ of the graph. Note that the edge set cannot be empty if the vertex set is empty. In an undirected graph, $(u,v) \in E \implies (v,u) \in E$ whenever $u \neq v$. A directed graph is one that is not undirected.
+\end{mydef}
+
+\begin{mydef} A simple graph $G = (V,E)$ is a graph with the property that for all $v \in V$ we have that $(v,v) \notin E$.
+\end{mydef}
+
+\begin{mydef} A subgraph $G' = (V',E')$ of a graph $G$ is a graph with the property that $V' \subseteq V$ and $E' \subseteq E$. Note that every graph is a subgraph of itself.
+\end{mydef}
+
+\begin{mydef} A weighted graph is a pair $(G,f)$ where $G$ is a graph and $f : E \rightarrow \mathbb{R}$ is a mapping that defines the weight of each edge of the graph $G$. An undirected weighted graph must satisfy the restriction that $f(u,v) = f(v,u)$ for all edges $(u,v) \in E$.
+\end{mydef}
+
+\begin{mydef} In a graph, a neighbor of a vertex $u$ is any vertex $v$ such that $(u,v) \in E$. In an undirected graph, if $u$ is a neighbor of $v$, then $v$ is a neighbor of $u$.
+\end{mydef}
+
+\begin{mydef} A path from vertex $v_{1}$ to vertex $v_{n}$ exists in a graph if there exists a sequence of vertices $v_{1},...,v_{n}$ such that $(v_{i},v_{i+1}) \in E$ for all $i \in \{ 1,2,...,n-1\}$. The path is called simple if the vertices $v_{1},...,v_{n}$ are all distinct with the one exception of the possibility that $v_{1} = v_{n}$. A trivial path is a path of length $0$. A nontrivial path is a path of length at least $1$. Every vertex in any graph has a trivial path to itself. If a graph has an edge $(a,a)$ for some vertex $a \in V$, then this vertex has a path of length $1$ to itself.
+\end{mydef}
+
+\begin{mydef} A cycle is nontrivial path from a vertex to itself. A simple cycle is a nontrivial simpe path from a vertex to itself. 
+\end{mydef}
+
+\begin{mytheorem} \done Every path in a graph may be decomposed into a sequence of paths consisting of simple paths and simple cycles. \end{mytheorem}
+
+\begin{mydef} A vertex $u \in V$ in a graph is connected to another vertex $v \in V$ if there exists a path from $u$ to $v$ in the graph. 
+\end{mydef}
+
+\begin{mytheorem} \done Every vertex in any graph is connected to itself. In an undirected graph, if $u \in V$ is connected to $v \in V$ , then $v$ is also connected to $u$. For any graph, if $u$ is connected to $v$ and $v$ is connected to $w$, then $u$ is connected to $w$.  \end{mytheorem}
+
+\begin{mytheorem} On a graph $G = (V,E)$, define the relation on $u R v$ on $V$ as $u$ is connected to $v$. Then for undirected graphs, this relation is an equivalence relation. This equivalence relation partitions $V$ into various equivalence classes. In particular, if $V' \subseteq V$ is one of the equivalence classes induced by this relation, then the subgraph $G' = (V',E')$ where $E'$ contains all edges $(u,v) \in E$ such that $u,v \in V'$ is called a component of the graph $G$. \end{mytheorem}
+
+\begin{mydef} A connected graph is a graph in which every pair of vertices are connected to one another. The components of a graph are therefore each connected subgraphs of the original graph $G$. 
+\end{mydef}
+
+\begin{mydef} A cyclic graph is a graph that contains a cycle. An acyclic graph is a graph that is not cyclic.
+\end{mydef}
+
+\begin{mydef} A tree is an undirected graph that is both connected and acyclic. 
+\end{mydef}
+
+\begin{mytheorem} A directed graph is a tree if and only if there is a unique path from any vertex $u$ to any other vertex $v$ in the graph. 
+\end{mytheorem}
+
+\begin{mydef} A leaf is a vertex having only one neighbor.
+\end{mydef}
+
+\begin{mytheorem} Every tree has at least two leaves. 
+\end{mytheorem}
+
+\begin{mydef} In a connected graph, a bridge is an edge whose removal would disconnect the graph (cause the graph to no longer be connected).
+\end{mydef}
+
+\begin{mytheorem} A directed graph is a tree if and only if every edge of the graph is a bridge.
+\end{mytheorem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Graph storage and search}
+
+Note: All analyses of time complexity assume the RAM model of computation, in which each memory access can be done in constant time. This is a good assumption when the memory addresses fit in a machine word. As of the time of this writing (2019), most modern operating systems are based on a 64-bit architecture, and therefore up to $2^{64}$ addresses can be supported, which is more than enough for even the largest graphs. 
+
+\begin{mydef} A sparse graph is a graph
+\end{mydef}
+
+\begin{mydef} In memory, a graph may be represented in either adjacency matrix or adjacency list format. In the adjacency matrix format, the graph is encoded as a $V \times V$ binary matrix $M$ where $V$ is the size of the vertex set, and where $M[u][v] = 1$ if and only if $(u,v) \in E$. In the adjacency list format, the graph is encoded as an array of linked lists. Each vertex $v \in V$ corresponds to a linked list which lists the neighbors of that vertex $v$. The adjacency list format is preferred for sparse graphs, and the matrix format is preferred for dense graphs. 
+\end{mydef}
+
+\begin{mytheorem} The adjacency matrix of any directed graph is symmetric.
+\end{mytheorem}
+
+\begin{mydef} A graph search is an algorithm that starts at some vertex $v$ and proceeds to visit the graph with the property that every vertex reachable from $v$, (i.e. having a path from $v$) will be visited at some point in the search.  
+\end{mydef}
+
+\begin{mydef} Any-first search is a graph search that starts with an empty bag, and puts the starting vertex $v$ into the bag. In each iteration, a random vertex is taken from the bag and marked. Its unmarked neighbors are then put into the bag. The algorithm continues until the bag is empty. By the end of the algorithm, the visited vertices are the vertices that are marked by the algorithm.
+\end{mydef}
+
+\begin{mytheorem} Any-first search is guaranteed to terminate on any finite graph. In addition, every vertex reachable from the starting vertex will eventually be marked by any-first search. Vertices not reachable from the starting vertex will not be marked. Any-first search is therefore a proper graph search algorithm. 
+\end{mytheorem}
+
+\begin{mydef} A depth-first search is similar to any-first search, except the vertices are added to and removed from the bag in a LIFO (last in, first out) manner. The bag therefore acts as a stack. A breadth-first search is similar to any-first search, except the vertices are added to and removed from the bag in a FIFO (first in, first out) manner. The bag therefore acts as a queue.
+\end{mydef}
+
+\begin{mytheorem} Both depth-first search and breadth-first search are graph search algorithms, guaranteed to terminate. 
+\end{mytheorem}
+
+\end{document}
+              

@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{verbatimbox}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[compact]{titlesec}
+\usepackage[bottom=1in]{geometry}
+
+
+\usepackage{booktabs}
+\usepackage{tabu}
+
+
+\usepackage{titling}
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\usepackage{ntheorem}
+\theorembodyfont{\normalfont}
+\newtheorem{mytheorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+\numberwithin{mytheorem}{section}
+\numberwithin{mydef}{section}
+\numberwithin{example}{section}
+
+\title{\textbf{Miscellaneous notes in mathematics}}
+\author{Abiyaz Chowdhury }
+\date{\today}
+
+\parindent 0in
+\setlength{\parskip}{0.5em}
+
+\newcommand{\done}{$\blacksquare$ }
+
+\begin{document}
+\maketitle
+
+\section{Functions}
+
+\begin{mydef} Let $X,Y$ be two sets. Then the Cartesian product  $X \times Y$ is defined as the set of all ordered pairs $(x,y)$ where $x \in X, y \in Y$. 
+\end{mydef}
+
+\begin{mydef} Let $X,Y$ be two sets. Then a relation $R$ on $X,Y$ is any subset of $X \times Y$. We say that $x \in X$ is related to $y \in Y$ (under the relation $R$) if $(x,y) \in R$. 
+\end{mydef}
+
+\begin{mydef} Let $X,Y$ be two sets. Then a function $f$ from $X$ to $Y$ is a relation that satisfies the additional property that  $(x,y_{1}),(x,y_{2}) \in f$. implies $y_{1} = y_{2}$. If $(x,y) \in f$, we say that $f$ has the value $y$ at $x$, and that $x$ is the argument of the function, and we simply write $f(x) = y$. We define the domain $D$ of $f$ as the subset of $X$ as $D = \{ x \in X | (x,y) \in f \text{ for some } y \in Y \}$. Typically $X$ is chosen to equal the domain of $f$, and some prefer this definition. $Y$ is called the codomain of $f$. 
+\end{mydef}
+
+\begin{mydef} Let $X,Y$ be two sets. Then a function $f$ from $X$ to $Y$ is a relation that satisfies the additional property that  $(x,y_{1}),(x,y_{2}) \in f$. implies $y_{1} = y_{2}$. If $(x,y) \in f$, we say that $f$ has the value $y$ at $x$, and that $x$ is the argument of the function, and we simply write $f(x) = y$. We define the domain $D$ of $f$ as the subset of $X$ as $D = \{ x \in X | (x,y) \in f \text{ for some } y \in Y \}$. Typically $X$ is chosen to equal the domain of $f$, and some prefer this definition. $Y$ is called the codomain of $f$. We write $f : X \rightarrow Y$ to denote a function $f$ with domain $X$ and codomain $Y$. 
+\end{mydef}
+
+\begin{mydef} Let $f : X \rightarrow Y$ be a function. Then given a subset $A \in X$, we define the image of $A$ under $f$ as the set $f[A] = \{ y \in Y | y = f(x) \text{ for some } x \in A \}$. Similarly, given a subset $B \in Y$, we define the pre-image or inverse image of $B$ under $f$ as the set $f^{-1}[B] \{ x \in X | y = f(x) \text{ for some } y \in B \}$. We define the range of $f$ as the image $f[X]$. 
+\end{mydef}
+
+\begin{mydef} Given a set $S$, we define the characteristic function of $S$ as the function:
+$$ f_{S} = 
+\begin{cases} 
+      1 &  x \in S \\
+      0 & x \notin S \\
+   \end{cases}
+$$
+ 
+\end{mydef}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Convex sets}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Convex functions}
+
+\begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R} $ is convex if $\textbf{dom}(f)$ is a convex set and if for all $x,y \in \textbf{dom}(f)$ with $\theta \in [0,1]$, we have $f(\theta x + (1-\theta)y) \leq \theta f(x) + (1-\theta)f(y)$.  \end{mydef}
+
+\begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R} $ is strictly convex if $\textbf{dom}(f)$ is a convex set and if for all $x,y \in \textbf{dom}(f)$ with $x \neq y$ and $\theta \in (0,1)$, we have $f(\theta x + (1-\theta)y) < \theta f(x) + (1-\theta)f(y)$.  \end{mydef}
+
+\begin{mydef} $f$ is concave if $-f$ is convex and $f$ is strictly concave if $-f$ is strictly convex.  \end{mydef}
+
+\begin{mytheorem} No function can be both strictly concave strictly convex, but both convexity and concavity is possible. In fact, any function is affine if and only if it is both convex and concave. \end{mytheorem}
+
+\begin{mytheorem} A function is convex if and only if it is convex when restricted to any line that intersects its domain. \end{mytheorem}
+
+\begin{mydef} A function $f : \mathbb{R}^{n} \rightarrow \mathbb{R}$ can be extended as $\widetilde{f} : \mathbb{R}^{n} \rightarrow \mathbb{R} \cup \{ \infty \}$ by 
+\end{mydef}
+
+
+\end{document}
+              

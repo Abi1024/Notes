@@ -1,0 +1,153 @@
+\documentclass[a4paper]{article}
+
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{verbatimbox}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[compact]{titlesec}
+\usepackage[bottom=1in]{geometry}
+
+
+\usepackage{booktabs}
+\usepackage{tabu}
+
+
+\usepackage{titling}
+\setlength{\droptitle}{-10em}   % This is your set screw
+
+\usepackage{ntheorem}
+\theorembodyfont{\normalfont}
+\newtheorem{mytheorem}{Theorem}
+\newtheorem{axiom}{Axiom}
+\newtheorem{example}{Example}
+\newtheorem{mydef}{Definition}
+\numberwithin{mytheorem}{section}
+\numberwithin{mydef}{section}
+\numberwithin{axiom}{section}
+\numberwithin{example}{section}
+
+\title{\textbf{Set Theory notes}}
+\author{Abiyaz Chowdhury}
+\date{\today}
+
+\parindent 0in
+\setlength{\parskip}{0.5em}
+
+\newcommand{\done}{$\blacksquare$ }
+
+\begin{document}
+\maketitle
+
+\section{Zermelo-Frenkel and Choice Set Theory (ZFC) Formulation}
+
+\begin{axiom} Extension: For every set $A$ and every set $B$, $A = B$ if and only if for every set $x$, $x \in A$ if and only if $x \in B$. 
+\end{axiom}
+
+\begin{mydef} A set $A$ is disjoint from a set $B$ if no element of $A$ is an element of $B$ and no element of $B$ is an element of $A$. 
+\end{mydef}
+
+\begin{axiom} Regularity: Every non-empty set $A$ contains an element $x$ such that $A$ and $x$ are disjoint sets.
+\end{axiom}
+
+\begin{mytheorem} No set is an element of itself. \end{mytheorem}
+
+\begin{axiom} Empty set: There exists a set $\varnothing$ such that for every set $x$, $x \notin \varnothing$.
+\end{axiom}
+
+
+\begin{axiom} Specification: If $A$ is a set and $P(x)$ is a formula of first order logic, then there exists a set $B$ containing precisely each $x \in A$ such that $P(x)$ is true. 
+\end{axiom}
+
+\begin{axiom} Pairing: If $A$ and $B$ are sets, then there exists a set containing precisely $A$ and $B$.
+\end{axiom}
+
+\begin{axiom} Unions: Let $\mathcal{A}$ be a collection of sets. Then there exists a set $\bigcup\limits_{A \in \mathcal{A}} A$ such that $x \in \bigcup\limits_{A \in \mathcal{A}} A$ if and only if there exists an $A \in \mathcal{A}$ such that $x \in A$.
+\end{axiom}
+
+\begin{mydef} The union of two sets, $A$ and $B$, is usually denoted by $A \cup B = \bigcup\limits_{X \in \{ A,B\}} X$.
+\end{mydef}
+
+\begin{mydef} A set $A$ is said to be a subset of a set $B$ if for every set $x$, $x \in A$ implies $x \in B$. When this is the case, we write $A \subseteq B$. If $A \subseteq B$ and $A \neq B$, we write $A \subset B$, and say $A$ is a proper subset of $B$. 
+\end{mydef}
+
+\begin{mytheorem} $A = B$ if and only if $A \subset B$ and $B \subset A$. \end{mytheorem}
+
+\begin{mytheorem} For every set $A$, $\varnothing \subseteq A$. \end{mytheorem}
+
+\begin{mydef} Let $\mathcal{A}$ be a collection of sets. Let $X \in \mathcal{A}$. Then the intersection of $\mathcal{A}$ is the set set $\bigcap\limits_{A \in \mathcal{A}} A = \{ x \in X | x \in A \text{ for every } A \in \mathcal{A} \}$
+\end{mydef}
+
+\begin{mydef} Let $A$ and $B$ be sets. The difference of $A$ and $B$ is the set $A \setminus B = \{ x \in A | x \notin B \}$. 
+\end{mydef}
+
+\begin{mydef} Let $a$ and $b$ be sets. The ordered pair $(a,b)$ is the set $( \{ \{ a \}, \{ a, b \} \}$. 
+\end{mydef}
+
+\begin{mytheorem} $(a,b) = (c,d)$ if and only if $a = c$ and $b = d$. \end{mytheorem}
+
+\begin{axiom} Replacement: Let $A$ be a set and let $\phi(a,b)$ be a formula of first-order logic such that for each $a \in A$ there is a unique $b$ for which $\phi(a,b)$ is true. Then there exists a set $B$ consisting of all $b$ for which some $a \in A$ satisfies $\phi(a,b)$.  
+\end{axiom}
+
+\begin{axiom} Infinity: There exists a set $X$ such that $\varnothing \in X$ and whenever $w \in X$, then $\{ w \cup \{ w \} \} \in X$.
+\end{axiom}
+
+\begin{axiom} Powers: For every set $X$, there exists a set $\mathcal{P}(X)$ such that $A \in \mathcal{P}(X)$ if and only if $A \subset X$.
+\end{axiom}
+
+Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom of choice, is deferred to the next section. The axiom of pairing follows from the axioms of replacement, powers, and infinity. The axiom of the empty set can be inferred from the axiom of specification when at least one set is known to exist. In the semantics of first-order logic, at least one set exists since the domain of discourse is nonempty. Hence some set must exist, and we can use this to construct the empty set. In a free logic, where the domain of discourd could be empty, the axiom of infinity can be modified to also imply the axiom of the empty set but we do not do this for simplicity and convenience. Nevertheless, the above axioms as a whole are not minimal, and are listed for the sake of completeness. 
+
+\section{Functions}
+
+\begin{mydef} Let $A$ and $B$ be given sets. The Cartesian product of $A$ and $B$ is $A \times B = \{ z \in \mathcal{P}(\mathcal{P}(A \cup B)) | z = (a,b) \text{ for some } a \in A, b \in B \}$
+\end{mydef}
+
+\begin{mydef} Let $A$ and $B$ be sets. A relation $R$ from $A$ to $B$ is a subset of $A \times B$. If $(a,b) \in R$, we write $a R b$. The domain of $R$ is the set $\text{dom}(R)  = \{ a \in A | \exists b \in B \text{ s.t. } a R b\}$. The range of $R$ is the set  $\text{ran}(R)  = \{ b \in B | \exists a \in A \text{ s.t. } a R b\}$. If $R$ is a relation from $A$ to $A$, we say $R$ is a relation in $A$.
+\end{mydef}
+
+\begin{mydef} A function (or mapping) $f$ from $A$ to $B$ is a relation from $A$ to $B$ with the following property: For every $a \in A$, there exists a unique $b \in B$ such that $(a,b) \in f$. Given $a \in A$, we write $f(a)$  for the unique element of $B$ such that $(a,f(a)) \in f$. If a function $f$ is from $A$ to $B$, we write $f: A \rightarrow B$. $A$ is said to be the domain of $A$ and $B$ the codomain.
+\end{mydef}
+
+\subsection{The axiom of choice}
+
+\begin{axiom} Choice:  If $X$ is a collection of nonempty sets, then there exists a function $f: X \rightarrow \bigcup X$ satisfying $f(A) \in A$ for all $A \in X$.
+\end{axiom}
+
+\subsection{Inverse mappings}
+
+\begin{mydef} Let $f: A \rightarrow B$. $f$ is said to be injective if $f(x) = f(y)$ implies $x=y$ for all $x,y \in A$. $f$ is said to be surjective if for every $b \in B$, there exists at least one $a \in A$ such that $f(a) = b$. $f$ is said to be bijective if $f$ is both injective and surjective.
+\end{mydef}
+
+\begin{mydef} Let $f: A \rightarrow B$, and $A' \subset A$. The restriction of $f$ to $A'$ is the function $f|_{A'}$, which maps from $A'$ to $B$, and is defined on as $f|_{A'}(x) = f(x)$ for all $x \in A'$.
+\end{mydef}
+
+\begin{mydef} A family of sets is a function $A$ with domain $I$. When $A$ is a family over the set $I$, we write $\{A_{i}\}_{i \in I}$, we write $A_{i}$ for $A(i)$.
+\end{mydef}
+
+\begin{mydef} If $f: A \rightarrow B$ is a function, then $f(A) = \{ b \in B | f(a) = b \text { for some } a \in A \} $ is called the range of $f$.
+\end{mydef}
+
+\begin{mytheorem} The function $f: A \rightarrow B$ is a surjection if and only if $B = f(A)$. \end{mytheorem}
+
+\begin{mydef} Let $S,T$ be sets where $S \neq \varnothing$, and let $f: S \rightarrow T$ be a function. 
+\end{mydef}
+
+
+\section{The natural numbers $\mathbb{N}$}
+
+\begin{axiom} 
+
+\end{axiom}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\end{document}
+              
