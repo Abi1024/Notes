@@ -56,9 +56,11 @@
 
 \begin{mytheorem} No set is an element of itself. \end{mytheorem}
 
-\begin{axiom} Empty set: There exists a set $\varnothing$ such that for every set $x$, $x \notin \varnothing$.
+\begin{axiom} Empty set: There exists a set $\varnothing$ such that for every set $x$, $x \notin \varnothing$. We call this set the empty set.
 \end{axiom}
 
+\begin{mydef} A set that is not the empty set is called nonempty.
+\end{mydef}
 
 \begin{axiom} Specification: If $A$ is a set and $P(x)$ is a formula of first order logic, then there exists a set $B$ containing precisely each $x \in A$ such that $P(x)$ is true. 
 \end{axiom}
@@ -109,8 +111,12 @@ Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom
 \begin{mydef} Let $A$ and $B$ be sets. A relation $R$ from $A$ to $B$ is a subset of $A \times B$. If $(a,b) \in R$, we write $a R b$. The domain of $R$ is the set $\text{dom}(R)  = \{ a \in A | \exists b \in B \text{ s.t. } a R b\}$. The range of $R$ is the set  $\text{ran}(R)  = \{ b \in B | \exists a \in A \text{ s.t. } a R b\}$. If $R$ is a relation from $A$ to $A$, we say $R$ is a relation in $A$.
 \end{mydef}
 
-\begin{mydef} A function (or mapping) $f$ from $A$ to $B$ is a relation from $A$ to $B$ with the following property: For every $a \in A$, there exists a unique $b \in B$ such that $(a,b) \in f$. Given $a \in A$, we write $f(a)$  for the unique element of $B$ such that $(a,f(a)) \in f$. If a function $f$ is from $A$ to $B$, we write $f: A \rightarrow B$. $A$ is said to be the domain of $A$ and $B$ the codomain.
+\begin{mydef} A function (or mapping) $f$ from $A$ to $B$ is a relation from $A$ to $B$ with the following property: For every $a \in A$, there exists a unique $b \in B$ such that $(a,b) \in f$. Given $a \in A$, we write $f(a)$  for the unique element of $B$ such that $(a,f(a)) \in f$. If a function $f$ is from $A$ to $B$, we write $f: A \rightarrow B$. $A$ is said to be the domain of $A$ and $B$ the codomain. Typically, when a function $f$ is defined, its domain and codomain are implicitly assumed to be non-empty.
 \end{mydef}
+
+\begin{mytheorem} Two functions $f: S \rightarrow T$ and $g: S \rightarrow T$ are equal if and only if $f(x) = g(x)$ $\forall x \in S$.
+\end{mytheorem}
+
 
 \subsection{The axiom of choice}
 
@@ -119,30 +125,64 @@ Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom
 
 \subsection{Inverse mappings}
 
-\begin{mydef} Let $f: A \rightarrow B$. $f$ is said to be injective if $f(x) = f(y)$ implies $x=y$ for all $x,y \in A$. $f$ is said to be surjective if for every $b \in B$, there exists at least one $a \in A$ such that $f(a) = b$. $f$ is said to be bijective if $f$ is both injective and surjective.
-\end{mydef}
-
 \begin{mydef} Let $f: A \rightarrow B$, and $A' \subset A$. The restriction of $f$ to $A'$ is the function $f|_{A'}$, which maps from $A'$ to $B$, and is defined on as $f|_{A'}(x) = f(x)$ for all $x \in A'$.
 \end{mydef}
 
 \begin{mydef} A family of sets is a function $A$ with domain $I$. When $A$ is a family over the set $I$, we write $\{A_{i}\}_{i \in I}$, we write $A_{i}$ for $A(i)$.
 \end{mydef}
 
-\begin{mydef} If $f: A \rightarrow B$ is a function, then $f(A) = \{ b \in B | f(a) = b \text { for some } a \in A \} $ is called the range of $f$.
+\begin{mydef} Let $S \neq \varnothing$ be a set. Then the function $f: S \rightarrow S$ defined as $f(x) = x$ for all $x \in S$ is called the identity function on $S$ and often denoted as $I_{S}$.
 \end{mydef}
 
-\begin{mytheorem} The function $f: A \rightarrow B$ is a surjection if and only if $B = f(A)$. \end{mytheorem}
-
-\begin{mydef} Let $S,T$ be sets where $S \neq \varnothing$, and let $f: S \rightarrow T$ be a function. 
+\begin{mydef} Composition of two functions: Let $f: S \rightarrow T$ and $g: R \rightarrow S$ be functions such that the domain of $f$ is the same as the codomain of $g$. Then the composite of $f$ and $g$ is defined as $f \circ g = \{ (x,z) \in R \times T : \exists y \in S : (x,y) \in g \wedge (y,z) \in f \} $
 \end{mydef}
 
+\begin{mytheorem} The compositon of two functions $f: S \rightarrow T$ and $g: R \rightarrow S$ is a function from $R$ to $T$.
+\end{mytheorem}
+
+\begin{mytheorem} Composition of functions is associative, i.e. if $f_{1}: S_{1} \rightarrow S_{2}$, $f_{2}: S_{2} \rightarrow S_{3}$ and $f_{3}: S_{3} \rightarrow S_{4}$, then $(f_{3} \circ f_{2}) \circ f_{1}$ = $f_{3} \circ (f_{2} \circ f_{1})$
+\end{mytheorem}
+
+\begin{mydef} Let $S,T$ be sets where $S \neq \varnothing$, and let $f: S \rightarrow T$ be a function. If $g: T \rightarrow S$ is a function such that $g \circ f = I_{S}$, then $g: T \rightarrow S$ is called a left inverse of $f$. 
+\end{mydef}
+
+\begin{mydef} Let $S,T$ be sets where $S \neq \varnothing$, and let $f: S \rightarrow T$ be a function. If $g: T \rightarrow S$ is a function such that $f \circ g = I_{T}$, then $g: T \rightarrow S$ is called a right inverse of $f$. 
+\end{mydef}
+
+\begin{mydef} Let $S,T$ be sets where $S \neq \varnothing$, and let $f: S \rightarrow T$ be a function. If $g: T \rightarrow S$ is a function such that $g \circ f = I_{S}$, then $g: T \rightarrow S$ is called a left inverse of $f$. 
+\end{mydef}
+
+\begin{mydef} Let $f: S \rightarrow T$. $f$ is said to be injective if $f(x) = f(y)$ implies $x=y$ for all $x,y \in S$. $f$ is said to be surjective if for every $y \in T$, there exists at least one $x \in A$ such that $f(x) = y$. $f$ is said to be bijective (or invertible) if $f$ is both injective and surjective.
+\end{mydef}
+
+\begin{mytheorem} For any nonempty set $S$, the identity function $I_{S}$ is both an injection and a surjection.
+\end{mytheorem}
+
+\begin{mytheorem} Let $f,g$ be functions such that $g \circ f$ is an injection. Then $f$ is an injection.
+\end{mytheorem}
+
+\begin{mytheorem} Let $f,g$ be functions such that $g \circ f$ is an surjection. Then $g$ is an surjection.
+\end{mytheorem}
+
+\begin{mytheorem} The function $f: S \rightarrow T$ is an injection if and only if it has a left inverse.
+\end{mytheorem}
+
+\begin{mytheorem} The function $f: S \rightarrow T$ is a surjection if and only if it has a right inverse.
+\end{mytheorem}
+
+\begin{mydef} If $f: S \rightarrow T$ is a function, then $f(S) = \{ y \in T | f(x) = y \text { for some } x \in S \} $ is called the range of $f$.
+\end{mydef}
+
+\begin{mytheorem} The function $f: S \rightarrow T$ is a surjection if and only if $T = f(S)$. \end{mytheorem}
+
+\begin{mytheorem} The function $f: S \rightarrow T$ be a bijection. Then it has a unique left inverse, and a unique right inverse. Moreover, these two inverses are one and the same function, and are denoted by $f^{-1}$, which is called the inverse of $f$. \end{mytheorem}
+
+\begin{mytheorem} For any function $f$, its inverse $f^{-1}$ is also a bijection. Moreover, $(f^{-1})^{-1} = f$. \end{mytheorem}
 
 \section{The natural numbers $\mathbb{N}$}
 
-\begin{axiom} 
-
-\end{axiom}
-
+\begin{mydef} Let $X$ be a collection of sets, and let $\phi$ be a formula of first order logic. Then a said $S$ is smallest with respect to the formula $\phi$ if $S \in X$, $\phi(S)$ is true, and $S_{2} \subseteq S$ whenever $S_{2} \in X$ and $\phi(S_{2})$ is true.
+\end{mydef}
 
 %%%%%%%%%%%%%%%%%%%%%%
 
