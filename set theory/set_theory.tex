@@ -54,8 +54,6 @@
 \begin{axiom} Regularity: Every non-empty set $A$ contains an element $x$ such that $A$ and $x$ are disjoint sets.
 \end{axiom}
 
-\begin{mytheorem} No set is an element of itself. \end{mytheorem}
-
 \begin{axiom} Empty set: There exists a set $\varnothing$ such that for every set $x$, $x \notin \varnothing$. We call this set the empty set.
 \end{axiom}
 
@@ -68,6 +66,8 @@
 \begin{axiom} Pairing: If $A$ and $B$ are sets, then there exists a set containing precisely $A$ and $B$.
 \end{axiom}
 
+\begin{mytheorem} \done  No set is an element of itself. \end{mytheorem}
+
 \begin{axiom} Unions: Let $\mathcal{A}$ be a collection of sets. Then there exists a set $\bigcup\limits_{A \in \mathcal{A}} A$ such that $x \in \bigcup\limits_{A \in \mathcal{A}} A$ if and only if there exists an $A \in \mathcal{A}$ such that $x \in A$.
 \end{axiom}
 
@@ -77,9 +77,9 @@
 \begin{mydef} A set $A$ is said to be a subset of a set $B$ if for every set $x$, $x \in A$ implies $x \in B$. When this is the case, we write $A \subseteq B$. If $A \subseteq B$ and $A \neq B$, we write $A \subset B$, and say $A$ is a proper subset of $B$. 
 \end{mydef}
 
-\begin{mytheorem} $A = B$ if and only if $A \subset B$ and $B \subset A$. \end{mytheorem}
+\begin{mytheorem} \done $A = B$ if and only if $A \subseteq B$ and $B \subseteq A$. \end{mytheorem}
 
-\begin{mytheorem} For every set $A$, $\varnothing \subseteq A$. \end{mytheorem}
+\begin{mytheorem} \done For every set $A$, $\varnothing \subseteq A$. \end{mytheorem}
 
 \begin{mydef} Let $\mathcal{A}$ be a collection of sets. Let $X \in \mathcal{A}$. Then the intersection of $\mathcal{A}$ is the set set $\bigcap\limits_{A \in \mathcal{A}} A = \{ x \in X | x \in A \text{ for every } A \in \mathcal{A} \}$
 \end{mydef}
@@ -90,7 +90,7 @@
 \begin{mydef} Let $a$ and $b$ be sets. The ordered pair $(a,b)$ is the set $( \{ \{ a \}, \{ a, b \} \}$. 
 \end{mydef}
 
-\begin{mytheorem} $(a,b) = (c,d)$ if and only if $a = c$ and $b = d$. \end{mytheorem}
+\begin{mytheorem} \done $(a,b) = (c,d)$ if and only if $a = c$ and $b = d$. \end{mytheorem}
 
 \begin{axiom} Replacement: Let $A$ be a set and let $\phi(a,b)$ be a formula of first-order logic such that for each $a \in A$ there is a unique $b$ for which $\phi(a,b)$ is true. Then there exists a set $B$ consisting of all $b$ for which some $a \in A$ satisfies $\phi(a,b)$.  
 \end{axiom}
@@ -114,7 +114,7 @@ Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom
 \begin{mydef} A function (or mapping) $f$ from $A$ to $B$ is a relation from $A$ to $B$ with the following property: For every $a \in A$, there exists a unique $b \in B$ such that $(a,b) \in f$. Given $a \in A$, we write $f(a)$  for the unique element of $B$ such that $(a,f(a)) \in f$. If a function $f$ is from $A$ to $B$, we write $f: A \rightarrow B$. $A$ is said to be the domain of $A$ and $B$ the codomain. Typically, when a function $f$ is defined, its domain and codomain are implicitly assumed to be non-empty.
 \end{mydef}
 
-\begin{mytheorem} Two functions $f: S \rightarrow T$ and $g: S \rightarrow T$ are equal if and only if $f(x) = g(x)$ $\forall x \in S$.
+\begin{mytheorem} \done Two functions $f: S \rightarrow T$ and $g: S \rightarrow T$ are equal if and only if $f(x) = g(x)$ $\forall x \in S$.
 \end{mytheorem}
 
 
@@ -137,10 +137,10 @@ Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom
 \begin{mydef} Composition of two functions: Let $f: S \rightarrow T$ and $g: R \rightarrow S$ be functions such that the domain of $f$ is the same as the codomain of $g$. Then the composite of $f$ and $g$ is defined as $f \circ g = \{ (x,z) \in R \times T : \exists y \in S : (x,y) \in g \wedge (y,z) \in f \} $
 \end{mydef}
 
-\begin{mytheorem} The compositon of two functions $f: S \rightarrow T$ and $g: R \rightarrow S$ is a function from $R$ to $T$.
+\begin{mytheorem} \done The compositon of two functions $f: S \rightarrow T$ and $g: R \rightarrow S$ is a function from $R$ to $T$ and we have that for all $x \in R$, $f(g(x)) = (f \circ g)(x)$.
 \end{mytheorem}
 
-\begin{mytheorem} Composition of functions is associative, i.e. if $f_{1}: S_{1} \rightarrow S_{2}$, $f_{2}: S_{2} \rightarrow S_{3}$ and $f_{3}: S_{3} \rightarrow S_{4}$, then $(f_{3} \circ f_{2}) \circ f_{1}$ = $f_{3} \circ (f_{2} \circ f_{1})$
+\begin{mytheorem} \done Composition of functions is associative, i.e. if $f_{1}: S_{1} \rightarrow S_{2}$, $f_{2}: S_{2} \rightarrow S_{3}$ and $f_{3}: S_{3} \rightarrow S_{4}$, then $(f_{3} \circ f_{2}) \circ f_{1}$ = $f_{3} \circ (f_{2} \circ f_{1})$
 \end{mytheorem}
 
 \begin{mydef} Let $S,T$ be sets where $S \neq \varnothing$, and let $f: S \rightarrow T$ be a function. If $g: T \rightarrow S$ is a function such that $g \circ f = I_{S}$, then $g: T \rightarrow S$ is called a left inverse of $f$. 
@@ -155,34 +155,174 @@ Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom
 \begin{mydef} Let $f: S \rightarrow T$. $f$ is said to be injective if $f(x) = f(y)$ implies $x=y$ for all $x,y \in S$. $f$ is said to be surjective if for every $y \in T$, there exists at least one $x \in A$ such that $f(x) = y$. $f$ is said to be bijective (or invertible) if $f$ is both injective and surjective.
 \end{mydef}
 
-\begin{mytheorem} For any nonempty set $S$, the identity function $I_{S}$ is both an injection and a surjection.
+\begin{mytheorem} \done For any nonempty set $S$, the identity function $I_{S}$ is both an injection and a surjection.
 \end{mytheorem}
 
-\begin{mytheorem} Let $f,g$ be functions such that $g \circ f$ is an injection. Then $f$ is an injection.
+\begin{mytheorem} \done Let $f,g$ be functions such that $g \circ f$ is an injection. Then $f$ is an injection.
 \end{mytheorem}
 
-\begin{mytheorem} Let $f,g$ be functions such that $g \circ f$ is an surjection. Then $g$ is an surjection.
+\begin{mytheorem} \done Let $f,g$ be functions such that $g \circ f$ is an surjection. Then $g$ is an surjection.
 \end{mytheorem}
 
-\begin{mytheorem} The function $f: S \rightarrow T$ is an injection if and only if it has a left inverse.
-\end{mytheorem}
-
-\begin{mytheorem} The function $f: S \rightarrow T$ is a surjection if and only if it has a right inverse.
-\end{mytheorem}
-
-\begin{mydef} If $f: S \rightarrow T$ is a function, then $f(S) = \{ y \in T | f(x) = y \text { for some } x \in S \} $ is called the range of $f$.
+\begin{mydef} If $f: S \rightarrow T$ is a function, then $f(S) = \{ y \in T | f(x) = y \text { for some } x \in S \} $ is called the range or image of $f$.
 \end{mydef}
 
-\begin{mytheorem} The function $f: S \rightarrow T$ is a surjection if and only if $T = f(S)$. \end{mytheorem}
+\begin{mydef} If $f: S \rightarrow T$ is a function, then we define a left inverse of $f$ to be a function $g: T \rightarrow S$ such that $g \circ f = I_{S}$. 
+\end{mydef}
+
+\begin{mydef} If $f: S \rightarrow T$ is a function, then we define a right inverse of $f$ to be a function $g: T \rightarrow S$ such that $f \circ g = I_{T}$. 
+\end{mydef}
+
+\begin{mytheorem} \done The function $f: S \rightarrow T$ is an injection if and only if it has a left inverse.
+\end{mytheorem}
+
+\begin{mytheorem} \done The function $f: S \rightarrow T$ is a surjection if and only if it has a right inverse.
+\end{mytheorem}
+
+\begin{mytheorem} \done If $S$ and $T$ are nonempty sets, then there exists an injection from $S$ to $T$ if and only if there exists a surjection from $T$ to $S$.
+\end{mytheorem}
+
+\begin{mytheorem} \done If $f: S \rightarrow T$ and $g: R \rightarrow S$ are injections, then the composition $f \circ g: R \rightarrow T$ is an injection.
+\end{mytheorem}
+
+\begin{mytheorem} \done If $f: S \rightarrow T$ and $g: R \rightarrow S$ are surjections, then the composition $f \circ g: R \rightarrow T$ is a surjection.
+\end{mytheorem}
+
+\begin{mytheorem} \done The function $f: S \rightarrow T$ is a surjection if and only if $T = f(S)$. \end{mytheorem}
 
 \begin{mytheorem} The function $f: S \rightarrow T$ be a bijection. Then it has a unique left inverse, and a unique right inverse. Moreover, these two inverses are one and the same function, and are denoted by $f^{-1}$, which is called the inverse of $f$. \end{mytheorem}
 
 \begin{mytheorem} For any function $f$, its inverse $f^{-1}$ is also a bijection. Moreover, $(f^{-1})^{-1} = f$. \end{mytheorem}
 
+\begin{mytheorem} If there exists a bijection from $S$ to $T$, then there exists a bijection from $T$ to $S$. \end{mytheorem}
+
+\begin{mytheorem} If $f: S \rightarrow T$ and $g: R \rightarrow S$ are bijections, then the composition $f \circ g: R \rightarrow T$ is a bijection.
+\end{mytheorem}
+
+\begin{mytheorem} Schr{\"o}der-Bernstein: If there exists an injection from $S$ to $T$ and an injection from $T$ to $S$, then there exists a bijection between the sets. \end{mytheorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The natural numbers $\mathbb{N}$}
 
-\begin{mydef} Let $X$ be a collection of sets, and let $\phi$ be a formula of first order logic. Then a said $S$ is smallest with respect to the formula $\phi$ if $S \in X$, $\phi(S)$ is true, and $S_{2} \subseteq S$ whenever $S_{2} \in X$ and $\phi(S_{2})$ is true.
+\subsection{Inductive sets}
+
+\begin{mydef} For any set $x$, we may define the set $x^{+} = x \cup \{ x \} $. 
 \end{mydef}
+
+\begin{mydef} A set $S$ is said to be inductive if and only if $\varnothing \in S$ and $x^{+} \in S$ whenever $x \in S$. From the axiom of infinity, at least one inductive set exists.
+\end{mydef}
+
+\begin{mytheorem} Let $S$ be any inductive set. Let $\mathbb{N}_{S} = \cap \{ A \subseteq S | A \text{ is inductive } \} $. Then $\mathbb{N}_{S}$ is a set, since it is the intersection of elements in $\mathcal{P}(S)$.
+\end{mytheorem}
+
+\begin{mytheorem} The intersection of any nonempty collection of inductive sets is inductive.
+\end{mytheorem}
+
+\begin{mytheorem} If $S$ is inductive, then $\mathbb{N}_{S}$ is inductive.
+\end{mytheorem}
+
+\begin{mytheorem} If $S$ and $T$ are any two inductive sets, then  $\mathbb{N}_{S} =  \mathbb{N}_{T}$. Therefore, we may define the unique set $\mathbb{N} = \mathbb{N}_{S}$ which is unique regardless of the choice of $S$. We call $\mathbb{N}$ the set of natural numbers, or the set of counting numbers.
+\end{mytheorem}
+
+\begin{mytheorem} If $S$ is any inductive set, then $\mathbb{N} \subseteq S$. 
+\end{mytheorem}
+
+\begin{mytheorem} If $n \in \mathbb{N}$, and $m \in n$, then $m \subseteq n$.
+\end{mytheorem}
+
+\begin{mytheorem} If $n \in \mathbb{N}$ and $m \in n$, then $n \not\subseteq m$.
+\end{mytheorem}
+
+\subsection{Peano Axioms}
+
+\begin{mytheorem} Let $0 = \varnothing$ and let $s(x) = x^{+}$. Then $\mathbb{N}$ satisfies the following:
+\begin{enumerate}
+\item $0 \in \mathbb{N}$
+\item If $n \in \mathbb{N}$, then $s(n) \in \mathbb{N}$.
+\item For all $n \in \mathbb{N}$, $s(n) \neq 0$.
+\item If $s(n) = s(m)$, then $n = m$. 
+\item If $S \subseteq \mathbb{N}$ is such that $0 \in S$, and $s(n) \in S$ whenever $n \in S$, then $S = \mathbb{N}$.
+\end{enumerate}
+\end{mytheorem}
+
+Remark: The Peano axioms are typically formulated as a definition of the natural numbers. However, they can be derived from the axiom of infinity, and hence are stated here as theorems. We may sometimes write $s(x)$, the successor function, as $x + 1$. In the decimal system, we may represent the naturals using Arabic numerals as follows: $\{0,1,2,3,4,5,6,7,8,10,11,... \}$. 
+
+\subsection{Order}
+
+\begin{mydef}Let $R$ be a relation in a set $S$. Then $R$ is a partial order if it satisfies the following properties:
+ \begin{enumerate}
+ \item Reflexivity: $(a,a) \in R$ $\forall a \in S$. 
+ \item Antisymmetry: If $(a,b) \in R$ and $(b,a) \in R$, then $a = b$. 
+ \item Transitivity: If $(a,b) \in R$ and $(b,c) \in R$, then $(a,c) \in R$.
+ \end{enumerate}
+ A set with a partial order is called a partially ordered set (or poset). We usually write $a \leq b$ to denote that $(a,b) \in R$. For elements $a,b$ of a poset $P$, if either $a \leq b$ or $b \leq a$, then the elements $a,b$ are said to be comparable to one another. 
+\end{mydef}
+
+\begin{mydef} Given a partial order $R$, we may define a relation $R'$ in $S$ as $(a,b) \in R'$ if and only if $(a,b) \in R$ and $a \neq b$. If $(a,b) \in R$ is denoted by $a \leq b$, then $(a,b) \in R'$ is usually denoted by $a < b$. 
+\end{mydef}
+
+\begin{mytheorem} The relation $R'$ in $S$, as defined above, is transitive. Moreover, it is anti-reflexive, meaning that for all $x \in S$, $(x,x) \notin R'$. If $(x,y) \in R'$ for some $x,y \in S$, then $(y,x) \notin R'$. 
+\end{mytheorem}
+
+\begin{mytheorem} If we write $a \leq b$ to denote $(a,b) \in R$, then we usually write $a \geq b$ to denote $(b,a) \in R$. Similarly, $a > b$ means that $a \geq b$ and $b \neq a$. 
+\end{mytheorem}
+
+
+\begin{mydef} A partial order under which every pair of elements is comparable is called a total order or linear order. A totally ordered set is also called a chain. 
+\end{mydef}
+
+\begin{mydef} A subset of a partial order in which no two elements are comparable to one another is called an antichain.
+\end{mydef}
+
+\begin{mydef} If $X$ is a family of sets, then the relation $R$ in $X$ defined by $(x,y) \in R$ if and only if $x \subseteq y$ is a partial order in $X$.
+\end{mydef}
+
+\begin{mydef} Define a relation $R$ in $\mathbb{N}$ as $(n,m) \in R$ if and only if $n \subseteq m$. We typically write $n \leq m$ to denote this relation. 
+\end{mydef}
+
+\begin{mytheorem} Given the above relation, $n < m$ in $\mathbb{N}$ if and only if $n \subset m$. 
+\end{mytheorem}
+
+\begin{mytheorem} Let $n \in \mathbb{N}$. Then either $n = 0$, or there exists $k \in \mathbb{N}$ such that $n = s(k)$.
+\end{mytheorem}
+
+\begin{mytheorem} Let $k,n \in \mathbb{N}$. If $k \subset n$, then $s(k) \subseteq n$.
+\end{mytheorem}
+
+\begin{mytheorem} The relation $\leq$ is a total order in $\mathbb{N}$. 
+\end{mytheorem}
+
+\subsection{Mathematical induction}
+
+\begin{mytheorem} If $n \in \mathbb{N}$, there is no $k \in \mathbb{N}$ for which $n < k < s(n)$. 
+\end{mytheorem}
+We now establish three major results, which are equivalent to one another, given what we have established so far.
+
+\begin{mytheorem} Well-ordering principle: If $A \subseteq \mathbb{N}$ and $A \neq \varnothing$, then $A$ has a smallest element, i.e. there is an element $x \in A$ such that $x \leq y$ for all $y \in A$.
+\end{mytheorem}
+
+\begin{mytheorem} Finite induction: Let $S \subseteq \mathbb{N}$ such that $0 \in S$ and $n \in S \implies (n+1) \in S$. Then $S = \mathbb{N}$.
+\end{mytheorem}
+
+\begin{mytheorem} Complete finite induction : Let $S \subseteq \mathbb{N}$ such that $0 \in S$ and $\{0,1,2,...,n\} \subseteq S \implies (n+1) \in S$. Then $S = \mathbb{N}$.
+\end{mytheorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Cardinality and Ordinality}
+
+
+
+\subsection{Equivalence relations}
+
+\begin{mydef}Let $R$ be a relation in a set $S$. Then $R$ is an equivalence relation if it satisfies the following properties:
+ \begin{enumerate}
+ \item Reflexivity: $(a,a) \in R$ $\forall a \in S$. 
+ \item Symmetry: If $(a,b) \in R$, then $(b,a) \in R$.
+ \item Transitivty: If $(a,b) \in R$ and $(b,c) \in R$, then $(a,c) \in R$.
+ \end{enumerate}
+We typically write $a \cong_{R} b$ or $a \equiv_{R} b$ to denote that $(a,b) \in R$. 
+\end{mydef}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%
 
