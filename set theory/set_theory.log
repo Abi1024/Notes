@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.3.5)  30 APR 2019 04:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600 64-bit) (preloaded format=pdflatex 2018.3.5)  6 MAY 2019 04:47
 entering extended mode
 **./set_theory.tex
 (set_theory.tex
@@ -1108,19 +1108,20 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/abiya/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
+ [5] [6]
 \tf@thm=\write4
 \openout4 = `set_theory.thm'.
 
- [5]
+ [7]
 (set_theory.aux) ) 
 Here is how much of TeX's memory you used:
  16265 strings out of 493303
  300991 string characters out of 3138857
- 373108 words of memory out of 3000000
+ 374121 words of memory out of 3000000
  19460 multiletter control sequences out of 15000+200000
  13057 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,8n,56p,824b,206s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,8n,56p,825b,266s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Pr
@@ -1133,9 +1134,9 @@ fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on set_theory.pdf (5 pages, 163388 bytes).
+Output written on set_theory.pdf (7 pages, 172536 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
