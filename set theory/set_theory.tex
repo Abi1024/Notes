@@ -211,7 +211,6 @@ Remarks: The above axioms form the ZF part of ZFC. The final axiom, or the axiom
 \begin{mytheorem} \done If $f: S \rightarrow T$ and $g: R \rightarrow S$ are bijections, then the composition $f \circ g: R \rightarrow T$ is a bijection. In particular, $(f \circ g)^{-1} = (g^{-1} \circ f^{-1})$.
 \end{mytheorem}
 
-\begin{mytheorem} \done Schr{\"o}der-Bernstein: If there exists an injection from $S$ to $T$ and an injection from $T$ to $S$, then there exists a bijection between the sets. \end{mytheorem}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The natural numbers $\mathbb{N}$}
 
@@ -278,7 +277,7 @@ Remark: The Peano axioms are typically formulated as a definition of the natural
  \item Antisymmetry: If $(a,b) \in R$ and $(b,a) \in R$, then $a = b$. 
  \item Transitivity: If $(a,b) \in R$ and $(b,c) \in R$, then $(a,c) \in R$.
  \end{enumerate}
- A set with a partial order is called a partially ordered set (or poset). We usually write $a \leq b$ to denote that $(a,b) \in R$. For elements $a,b$ of a poset $P$, if either $a \leq b$ or $b \leq a$, then the elements $a,b$ are said to be comparable to one another. In some cases, $(P, \leq)$ is used to denote the partially ordered set $P$ under the partial order $\leq$.
+ A set with a partial order is called a partially ordered set (or poset). We usually write $a \leq b$ to denote that $(a,b) \in R$. For elements $a,b$ of a poset $P$, if either $a \leq b$ or $b \leq a$, then the elements $a,b$ are said to be comparable to one another. In some cases, $(P, \leq)$ is used to denote the partially ordered set $P$ under the partial order $\leq$. Sometimes, the term order will simply be used to mean partial order. 
 \end{mydef}
 
 \begin{mytheorem} \done If $\mathcal{X}$ is a collection of sets, then the relation $R$ defined for all $A,B \in \mathcal{X}$ by $(A,B) \in R$ if and only if $A \subseteq B$ is a partial order in $\mathcal{X}$.
@@ -287,13 +286,13 @@ Remark: The Peano axioms are typically formulated as a definition of the natural
 \begin{mydef} Given a partial order $R$ in a set $S$, we may define a relation $R'$ in $S$ as $(a,b) \in R'$ if and only if $(a,b) \in R$ and $a \neq b$. If $(a,b) \in R$ is denoted by $a \leq b$, then $(a,b) \in R'$ is usually denoted by $a < b$. The relation $R'$ thus induced from the partial order $R$ is called a strict (or irreflexive) order.
 \end{mydef}
 
-\begin{mytheorem} \done The relation $R'$ in $S$, as defined above, is transitive. Moreover, it is anti-reflexive, meaning that for all $x \in S$, $(x,x) \notin R'$. If $(x,y) \in R'$ for some $x,y \in S$, then $(y,x) \notin R'$.
+\begin{mytheorem} \done The relation $R'$ in $S$, as defined above, is transitive. Moreover, it is anti-reflexive (or irreflexive), meaning that for all $x \in S$, $(x,x) \notin R'$. If $(x,y) \in R'$ for some $x,y \in S$, then $(y,x) \notin R'$.
 \end{mytheorem}
 
 \begin{mydef} If we write $a \leq b$ to denote $(a,b) \in R$, then we usually write $a \geq b$ to denote $(b,a) \in R$. Similarly, $a > b$ means that $a \geq b$ and $b \neq a$. 
 \end{mydef}
 
-\begin{mydef} A partial order under which every pair of elements is comparable is called a total order or linear order. A totally ordered set is also called a chain. 
+\begin{mydef} A partial order under which every pair of elements is comparable is called a total order or linear order. A set that has a total order is called a totally ordered set, or chain.  
 \end{mydef}
 
 \begin{mytheorem} \done Let $R$ be a total order in $S$ and let $x,y \in S$. Then $(x,y) \in R'$ if and only if $(y,x) \notin R$. 
@@ -365,7 +364,7 @@ We now establish three major results, which are equivalent to one another, given
 \begin{mytheorem} \done Finite induction: Let $S \subseteq \mathbb{N}$ such that $0 \in S$ and $n \in S \implies (n+1) \in S$. Then $S = \mathbb{N}$.
 \end{mytheorem}
 
-\begin{mytheorem} Complete finite induction : Let $S \subseteq \mathbb{N}$ such that $0 \in S$ and $\{0,1,2,...,n\} \subseteq S \implies (n+1) \in S$. Then $S = \mathbb{N}$.
+\begin{mytheorem} \done Complete finite induction : Let $S \subseteq \mathbb{N}$ such that $0 \in S$ and $\{0,1,2,...,n\} \subseteq S \implies (n+1) \in S$. Then $S = \mathbb{N}$.
 \end{mytheorem}
 
 \subsection{Bounds and minimal/maximal elements}
@@ -376,24 +375,27 @@ We now establish three major results, which are equivalent to one another, given
 \begin{mydef} Let $(P, \leq)$ be a partial ordered set and let $S \subseteq P$ be nonempty. Then $m \in S$ is a minimal element of $S$ if for all $s \in S$, $m \geq s$ implies $m = s$. 
 \end{mydef}
 
-\begin{mytheorem} $\mathbb{N}$ has no maximal element under the partial order $\subseteq$. More generally, no inductive set has a maximal element under the partial order $\subseteq$.
+\begin{mydef} Let $(P, \leq)$ be a totally ordered set and let $S \subseteq P$ be nonempty. Then $m \in S$ is a maximum (or the greatest element) of $S$ if for all $s \in S$, $m \geq s$. 
+\end{mydef}
+
+\begin{mydef} Let $(P, \leq)$ be a totally ordered set and let $S \subseteq P$ be nonempty. Then $m \in S$ is a minimum (or the least element) of $S$ if for all $s \in S$, $m \leq s$. 
+\end{mydef}
+
+\begin{mytheorem} \done If a totally ordered set has a maximum, it is unique. Moreover, the maximum of a totally ordered set is also the only maximal element of the set. Conversely, if a totally ordered set has a maximal element, it is unique, and is also the maximum of the set.
 \end{mytheorem}
 
-\begin{mytheorem} $\mathbb{N}$ has a unique minimal element under the partial order $\subseteq$, namely $\varnothing$. Every nonempty subset of $\mathbb{N}$ has a unique minimal element by the well-ordering principle.
+\begin{mytheorem} \done If a totally ordered set has a minimum, it is unique. Moreover, the minimum of a totally ordered set is also the only minimal element of the set. Conversely, if a totally ordered set has a minimal element, it is unique, and is also the minimum of the set.
+\end{mytheorem}
+
+\begin{mytheorem} \done $\mathbb{N}$ has no maximal element under the order $\subseteq$. More generally, no inductive set has a maximal element under the order $\subseteq$.
+\end{mytheorem}
+
+\begin{mytheorem} \done $\mathbb{N}$ has a minimum under the partial order $\subseteq$, namely $\varnothing$. Every nonempty subset of $\mathbb{N}$ has a unique minimum element by the well-ordering principle.
 \end{mytheorem}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cardinality and Ordinality}
-
-\begin{mydef} A set $A$ has cardinality less than or equal to that of set $B$ if there is an injection from $A$ to $B$. A set $A$ has cardinality greater than or equal to that of set $B$ if there is an injection from $A$ to $B$. We may write these two statements as $|A| \geq |B|$ and $|A| \leq B$ respectively. Two sets have equation cardinality, or are said to be equipollent, if $|A| \geq |B|$ and $|A| \leq B$. 
-\end{mydef}
-
-\begin{mytheorem} The relation $R$ defined in a family of sets by $(A,B) \in R$ if and only if $|A| \leq B$ is a partial order. 
-\end{mytheorem}
-
-
-
 
 \subsection{Equivalence relations}
 
@@ -416,10 +418,60 @@ We typically write $a \cong_{R} b$ or $a \equiv_{R} b$ to denote that $(a,b) \in
  \end{enumerate}
 \end{mydef}
 
-\begin{mytheorem} The equivalence classes of a set $S$ under an equivalence relation $R$ form a partition of $S$. Moreover, given a partition $\mathcal{P}$ of $S$, we may define an equivalence relation $R$ in $S$ as $(a,b) \in R$ if and only if $a \in X$ and $b \in X$ for some $X \in \mathcal{P}$. 
+\begin{mytheorem} \done The equivalence classes of a set $S$ under an equivalence relation $R$ form a partition of $S$. Moreover, given a partition $\mathcal{P}$ of $S$, we may define an equivalence relation $R$ in $S$ as $(a,b) \in R$ if and only if $a \in X$ and $b \in X$ for some $X \in \mathcal{P}$. 
 \end{mytheorem}
 
+\subsection{Cardinality}
 
+
+\begin{mytheorem} \done Schr{\"o}der-Bernstein: If there exists an injection from $S$ to $T$ and an injection from $T$ to $S$, then there exists a bijection from $S$ to $T$ (and hence a bijection from $T$ to $S$). \end{mytheorem}
+
+\begin{mydef} A set $A$ has cardinality less than or equal to that of set $B$ if there is an injection from $A$ to $B$. A set $A$ has cardinality greater than or equal to that of set $B$ if there is an injection from $B$ to $A$. We may write these two statements as $|A| \leq |B|$ and $|A| \geq B$ respectively. Two sets have equal cardinality, or are said to be equipollent, if $|A| \geq |B|$ and $|A| \leq B$. By the Schr{\"o}der-Bernstein theorem, two sets are equipollent if and only if there is a bijection from either set to the other. We may simply write $|A| = |B|$ to denote the statement that both $|A| \geq |B|$ and $|A| \leq B$. Moreover, we may write $|A| < |B|$ to denote $|A| \leq |B|$ but $|A| \neq |B|$ and $|A| > |B|$ to denote $|A| \geq |B|$ but $|A| \neq |B|$.
+\end{mydef}
+
+\begin{mytheorem} The relation $R$ defined in a family of sets by $(A,B) \in R$ if and only if $|A| \leq |B|$ is reflexive and transitive. The relation $R'$ defined by $(A,B) \in R'$ if and only if $|A| > |B|$ is irreflexive and transitive.
+\end{mytheorem}
+
+\begin{mydef} A set $S$ is said to be countable if $|S| \leq |\mathbb{N}$. A set that is not countable is uncountable.
+\end{mydef}
+
+\begin{mydef}Let $S$ be a countable set. Either $|S| =|\mathbb{N}|$ or $|S| \neq |\mathbb{N}|$. If $|S| =|\mathbb{N}|$, then S is said to be countably infinite. If $|S| \neq |\mathbb{N}|$, $S$ is said to be finite. 
+\end{mydef}
+
+\begin{mytheorem} For any finite set $S$, $|S| < |\mathbb{N}|$. Moreover, there exists a subset $A = \{ 1,2,3,...,n\}$ of $\mathbb{N}$ such that $|S| = |A|$.
+\end{mytheorem}
+
+\subsection{Boolean algebras}
+
+\begin{mydef}
+A Boolean algebra $(S,+,*)$ is a set $S$ with two binary operations $+$ and $*$ that satisfy the following properties:
+ \begin{enumerate}
+ \item Closure: For all $a,b \in S$, it is the case that $(a+b) \in S$ and $(a * b) \in S$.
+ \item Cardinality: There are at least two elements $a,b \in S$ such that $a \neq b$. 
+ \item Commutativity: For all $a,b \in S$, it is the case that $(a+b) = (b+a)$ and $(a*b) = (b*a)$.
+ \item Associativity: For all $a,b,c \in S$, it is the case that $(a+b)+c = a+(b+c)$ and $(a*b)*c = a*(b*c)$.
+ \item Identity: There is an element $S_{0} \in S$ such that $a + S_{0} = a$ for all $a \in S$ and there is an element $S_{1} \in S$ such that $a * S_{1} = a$ for all $a \in S$. $S_{0}$ is called the additive identity and often written simply as $0$. Similarly, $S_{1}$ is called the multiplicative identity and often written simply as $1$. 
+ \item Distributivity: $+$ is distributive over $*$ and $*$ is also distributive over $+$. This means that for all $a,b,c \in S$, it is the case that $a*(b+c) = a*b + a*c $ and $a + (b*c) = (a+b)*(a+c)$.
+ \item Complementarity: For every $a \in S$ there is an element $a' \in S$ such that $a + a' = 1$ and $a * a' = 0$.
+ \end{enumerate}
+ 
+ Throughout this section, we will state theorems in terms of a Boolean algebra $(S,+,*)$ and the following theorems hold for all Boolean algebras.
+\end{mydef}
+
+\begin{mytheorem} Idempotence: $+$ and $*$ are idempotent. This means that for all $a \in S$, $a + a = a$ and $a * a = a$.
+\end{mytheorem}
+
+\begin{mytheorem} Additive and multiplicative nullity (dominance laws): For all $x \in S$, we have $x + 1 = 1$ and $x * 0 = 0$.
+\end{mytheorem}
+
+\begin{mytheorem} Absorption: For all $x,y \in S$, $y*x + x = x$ and $(y+x)*x = x$.
+\end{mytheorem}
+
+\begin{mytheorem} DeMorgan's law: For all $x,y \in S$, $(x+y)' = x' * y'$ and $(x*y)' = x' + y'$.
+\end{mytheorem}
+
+\begin{mytheorem} If $\mathcal{C}$ is a collection of sets, then $(\mathcal{C},\cup,\cap)$ is a Boolean algebra.
+\end{mytheorem}
 
 
 %%%%%%%%%%%%%%%%%%%%%%
